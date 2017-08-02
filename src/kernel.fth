@@ -19,7 +19,7 @@ code invert
 end-code
 
 code @
-   \ r0 z movw,
+   r0 r30 movw,
    z+ r0 ld,
    z+ r1 ld,
    ret,
@@ -32,7 +32,7 @@ code drop
 end-code
 
 code !
-   \ r0 z movw,
+   r0 r30 movw,
    ] drop [ also assembler
    1 z+ )# r1 std,
    0 z+ )# r0 std,
@@ -43,6 +43,14 @@ end-code
 code dup
    -y r1 st,
    -y r0 st,
+   ret,
+end-code
+
+code swap
+   r0 r2 movw,
+   ] drop [ also assembler
+   -y r3 st,
+   -y r2 st,
    ret,
 end-code
 

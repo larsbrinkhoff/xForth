@@ -50,6 +50,7 @@ only forth also meta also compiler definitions previous
 
 also assembler
 h: exit   ret, ;
+h: nip   2 # r28 adiw, ;
 
 \ h: if
 \ h: ahead
