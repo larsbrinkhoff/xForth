@@ -6,8 +6,8 @@
 \ In small devices, the 16-bit RCALL instruction will be used.
 \
 \ Register usage:
-\ r0, r1 - TOS
-\ r2     - Temporary
+\ Z      - TOS
+\ r2, r3 - Temporary
 \ Y      - Data stack pointer
 \ SP     - Return stack pointer
 
