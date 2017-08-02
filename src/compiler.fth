@@ -28,10 +28,11 @@ also assembler
 : short?   dup here - 4096 < ;
 : comp,   short? if rcall, else call, then ;
 
-: t-num ;
-: dovar, ;
-
 : branch?,   s" branch?" "' rcall, 0<>, ;
+: dup,   s" dup" "' rcall, ;
+
+: t-num   dup,  dup 255 and # r30 ldi,  8 rshift # r31 ldi, ;
+: dovar, ;
 
 also forth
 ' comp, is t-compile,
