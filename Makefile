@@ -1,5 +1,8 @@
 all: check
 
+image: src/compiler.fth src/kernel.fth
+	echo include $< | forth
+
 check: test-avr-asm
 
 test-%-asm: test/test-%-asm.fth target/%/asm.fth
@@ -7,4 +10,4 @@ test-%-asm: test/test-%-asm.fth target/%/asm.fth
 	grep "Assembler test: PASS" $@
 
 clean:
-	rm -f test-*-asm
+	rm -f test-*-asm image
