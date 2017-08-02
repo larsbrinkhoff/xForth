@@ -31,6 +31,8 @@ also assembler
 : t-num ;
 : dovar, ;
 
+: branch?,   s" branch?" "' rcall, 0<>, ;
+
 also forth
 ' comp, is t-compile,
 ' t-num is t-literal
@@ -52,15 +54,15 @@ also assembler
 h: exit   ret, ;
 h: nip   2 # r28 adiw, ;
 
-\ h: if
-\ h: ahead
-\ h: then
-\ h: else
-\ h: begin
-\ h: again
-\ h: until
-\ h: while
-\ h: repeat
+h: if   branch?, if, ;
+h: ahead   ahead, ;
+h: then   then, ;
+
+h: begin   begin, ;
+h: again   again, ;
+h: until   branch?, until, ;
+h: while   branch?, while, ;
+h: repeat   repeat, ;
 previous
 
 h: ;   [compile] exit [compile] [ ;

@@ -74,3 +74,14 @@ code r>
    r1 pop,
    ret,
 end-code
+
+code branch?
+   r0 r1 or,
+   y+ r0 ld,
+   y+ r1 ld,
+   ret,
+end-code
+
+: +!   dup >r @ + r> ! ;
+: r@   r> r> dup >r swap >r ;
+: ?dup   dup if dup then ;
