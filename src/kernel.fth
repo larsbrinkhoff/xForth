@@ -1,3 +1,7 @@
+also assembler
+nop, nop, nop,
+break,
+
 code +
    y+ r2 ld,
    r2 r30 add,

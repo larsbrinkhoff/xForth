@@ -7,3 +7,5 @@ install_lbforth() {
 }
 
 (install_lbforth)
+
+sudo apt-get install simulavr
