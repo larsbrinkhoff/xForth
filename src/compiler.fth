@@ -70,11 +70,9 @@ h: repeat   repeat, ;
 previous
 
 h: ;   [compile] exit [compile] [ ;
-\ h: [']
-\ h: [char]
-\ h: literal
-\ h: compile
-\ h: [compile]
+h: [']   ' t-literal ;
+h: [char]   char t-literal ;
+h: literal   t-literal ;
 \ h: does>
 
 2 t-constant cell
