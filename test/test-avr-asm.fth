@@ -2,7 +2,7 @@
 \ The existing CODE words will be patched to point to the
 \ new nucleus.
 
-require targets/avr/asm.fth
+require target/avr/asm.fth
 
 : w@ ( a -- u ) dup c@ swap 1+ c@ 8 lshift + ;
 : fail? ( c a -- a' f ) 2 - tuck w@ <> ;
@@ -30,8 +30,8 @@ code assembler-test
    r11 lsr,                 94B6 check
    r12 ror,                 94C7 check
    r13 dec,                 94DA check
-   r14 rol,                 0CEE check
-   r15 lsl,                 1CFF check
+   r14 rol,                 1CEE check
+   r15 lsl,                 0CFF check
    r16 clr,                 2700 check
 
    r0 r0 cpc,               0400 check

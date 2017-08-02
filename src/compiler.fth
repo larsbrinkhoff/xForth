@@ -20,7 +20,7 @@ include lib/meta.fth
 
 only forth also meta definitions
 
-include targets/avr/asm.fth
+include target/avr/asm.fth
 
 also assembler
 : header, ( a u -- ) here t-word ;
