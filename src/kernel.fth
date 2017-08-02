@@ -77,6 +77,14 @@ code dup
    ret,
 end-code
 
+code ?dup
+   0 # r30 adiw,
+   0<>, if,
+     ] dup [ also assembler
+   then,
+   ret,
+end-code
+
 code swap
    r30 r2 movw,
    ] drop [ also assembler
@@ -115,4 +123,3 @@ end-code
 
 : +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
-: ?dup   dup if dup then ;

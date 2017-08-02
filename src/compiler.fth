@@ -53,6 +53,9 @@ only forth also meta also compiler definitions previous
 also assembler
 h: exit   ret, ;
 h: nip   2 # r28 adiw, ;
+h: cell+   2 # r30 adiw, ;
+h: 1+   1 # r30 adiw, ;
+h: 1-   1 # r30 sbiw, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;
