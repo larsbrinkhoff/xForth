@@ -138,9 +138,20 @@ end-code
 : =   - 0= ;
 : <>   - 0<> ;
 
-code halt
+code panic
+   255 dup c, c, \ Illegal instruction.
    break,
 end-code
 
+code bye
+   break,
+end-code
+
+: assert=   <> if panic then ;
+
+: juggling   42 dup swap nip 42 assert= ;
+: arithmetic   1 2 + 3 + 6 assert= ;
+: test   juggling arithmetic ;
+
 also assembler then, \ Jump here from COLD.
-: warm   42 dup swap nip drop halt ;
+: warm   test bye ;
