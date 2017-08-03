@@ -131,6 +131,12 @@ end-code
 
 : +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
+: negate   invert 1+ ;
+: -   negate + ;
+: 0=   if 0 else -1 then ;
+: 0<>   0= 0= ;
+: =   - 0= ;
+: <>   - 0<> ;
 
 code halt
    break,
