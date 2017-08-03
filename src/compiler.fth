@@ -61,6 +61,7 @@ h: 1-   1 # r30 sbiw, ;
 h: if   branch?, if, ;
 h: ahead   ahead, ;
 h: then   then, ;
+h: else   else, ;
 
 h: begin   begin, ;
 h: again   again, ;
