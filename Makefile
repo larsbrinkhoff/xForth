@@ -7,7 +7,7 @@ image: src/compiler.fth src/kernel.fth
 
 test-image: image
 	simulavr -D -d at90s2313 $< > $@ 2> /dev/null
-	grep "BREAK POINT: PC = 0x00000003" $@
+	grep "BREAK POINT" $@
 
 test-%-asm: test/test-%-asm.fth target/%/asm.fth
 	echo include $< | forth > $@

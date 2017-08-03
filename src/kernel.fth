@@ -1,6 +1,10 @@
-also assembler
-nop, nop, nop,
-break,
+code cold
+   100 # r28 ldi, \ Set data stack pointer.
+   r29 clr,
+   128 # r16 ldi,
+   48909 , \ 61 # r16 out, \ Set return stack pointer.
+   ahead, \ Jump to WARM.
+end-code
 
 code +
    y+ r2 ld,
@@ -127,3 +131,10 @@ end-code
 
 : +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
+
+code halt
+   break,
+end-code
+
+also assembler then, \ Jump here from COLD.
+: warm   42 dup swap nip drop halt ;
