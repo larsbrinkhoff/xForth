@@ -1,0 +1,8 @@
+Convert binar file to ELF:
+
+avr-objcopy --rename-section .data=.text,CONTENTS,ALLOC,LOAD,CODE -I binary image -O elf32-avr image.elf
+avr-ld image.elf -o image.exe
+
+Optionally:
+
+avr-strip -s image.exe
