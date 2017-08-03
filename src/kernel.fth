@@ -109,16 +109,24 @@ code over
 end-code
 
 code >r
+   r4 pop,
+   r5 pop,
    r31 push,
    r30 push,
    ] drop [ also assembler
+   r5 push, \ TODO: Use "z ijmp,"
+   r4 push,
    ret,
 end-code
 
 code r>
+   r4 pop,
+   r5 pop,
    ] dup [ also assembler
    r30 pop,
    r31 pop,
+   r5 push,
+   r4 push,
    ret,
 end-code
 
@@ -151,7 +159,8 @@ end-code
 
 : juggling   42 dup swap nip 42 assert= ;
 : arithmetic   1 2 + 3 + 6 assert= ;
-: test   juggling arithmetic ;
+: return   1 >r 1 r> assert= ;
+: test   juggling arithmetic return ;
 
 also assembler then, \ Jump here from COLD.
 : warm   test bye ;
