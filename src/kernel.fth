@@ -109,25 +109,21 @@ code over
 end-code
 
 code >r
-   r4 pop,
-   r5 pop,
-   r27 push,
+   r31 pop,
+   r30 pop,
    r26 push,
+   r27 push,
    ] drop [ also assembler
-   r5 push, \ TODO: Use "z ijmp,"
-   r4 push,
-   ret,
+   z ijmp,
 end-code
 
 code r>
-   r4 pop,
-   r5 pop,
+   r31 pop,
+   r30 pop,
    ] dup [ also assembler
-   r26 pop,
    r27 pop,
-   r5 push,
-   r4 push,
-   ret,
+   r26 pop,
+   z ijmp,
 end-code
 
 code branch?

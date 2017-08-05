@@ -9,7 +9,7 @@
 \ X      - TOS
 \ Y      - Data stack pointer
 \ Z      - Temporary
-\ r2-r5  - Temporary
+\ r2-r3  - Temporary
 \ SP     - Return stack pointer
 
 
