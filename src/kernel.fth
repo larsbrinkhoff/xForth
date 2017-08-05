@@ -41,15 +41,14 @@ code invert
 end-code
 
 code @
-   z+ r2 ld,
-   z+ r3 ld,
-   r2 r26 movw,
+   r26 r30 movw,
+   z+ r26 ld,
+   z+ r27 ld,
    ret,
 end-code
 
 code c@
-   r26 r26 movw,
-   x+ r26 ld,
+   x r26 ld,
    r27 clr,
    ret,
 end-code
@@ -63,18 +62,18 @@ end-code
 code !
    r26 r30 movw,
    ] drop [ also assembler
-   1 z+ )# r27 std,
-   0 z+ )# r26 std,
+   z+ r26 st,
+   z+ r27 st,
    ] drop [ also assembler
    ret,
 end-code
 
-\ WRONG
 code c!
    r26 r30 movw,
    ] drop [ also assembler
    r27 clr,
    z+ r26 st,
+   z+ r27 st,
    ] drop [ also assembler
    ret,
 end-code
