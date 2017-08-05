@@ -1,7 +1,7 @@
 code cold
-   100 # r28 ldi, \ Set data stack pointer.
+   140 # r28 ldi, \ Set data stack pointer.
    r29 clr,
-   128 # r16 ldi,
+   158 # r16 ldi,
    48909 , \ 61 # r16 out, \ Set return stack pointer.
    ahead, \ Jump to WARM.
 end-code
