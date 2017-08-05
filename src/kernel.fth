@@ -8,85 +8,85 @@ end-code
 
 code +
    y+ r2 ld,
-   r2 r30 add,
+   r2 r26 add,
    y+ r2 ld,
-   r2 r31 adc,
+   r2 r27 adc,
    ret,
 end-code
 
 code xor
    y+ r2 ld,
-   r2 r30 eor,
+   r2 r26 eor,
    y+ r2 ld,
-   r2 r31 eor,
+   r2 r27 eor,
    ret,
 end-code
 
 code 2*
-   r30 lsl,
-   r31 rol,
+   r26 lsl,
+   r27 rol,
    ret,
 end-code
 
 code 2/
-   r31 asr,
-   r30 ror,
+   r27 asr,
+   r26 ror,
    ret,
 end-code
 
 code invert
-   r30 com,
-   r31 com,
+   r26 com,
+   r27 com,
    ret,
 end-code
 
 code @
    z+ r2 ld,
    z+ r3 ld,
-   r2 r30 movw,
+   r2 r26 movw,
    ret,
 end-code
 
 code c@
-   r30 r26 movw,
-   x+ r30 ld,
-   r31 clr,
+   r26 r26 movw,
+   x+ r26 ld,
+   r27 clr,
    ret,
 end-code
 
 code drop
-   y+ r30 ld,
-   y+ r31 ld,
+   y+ r26 ld,
+   y+ r27 ld,
    ret,
 end-code
 
 code !
-   r30 r26 movw,
+   r26 r30 movw,
    ] drop [ also assembler
-   1 x+ )# r31 std,
-   0 x+ )# r30 std,
+   1 z+ )# r27 std,
+   0 z+ )# r26 std,
    ] drop [ also assembler
    ret,
 end-code
 
 \ WRONG
 code c!
-   r30 r26 movw,
+   r26 r30 movw,
    ] drop [ also assembler
-   r31 clr,
-   x+ r30 st,
+   r27 clr,
+   z+ r26 st,
    ] drop [ also assembler
    ret,
 end-code
 
 code dup
-   -y r31 st,
-   -y r30 st,
+   -y r27 st,
+   -y r26 st,
    ret,
 end-code
 
 code ?dup
-   0 # r30 adiw,
+   0 # r26 adiw,
    0<>, if,
      ] dup [ also assembler
    then,
@@ -94,7 +94,7 @@ code ?dup
 end-code
 
 code swap
-   r30 r2 movw,
+   r26 r2 movw,
    ] drop [ also assembler
    -y r3 st,
    -y r2 st,
@@ -103,16 +103,16 @@ end-code
 
 code over
    ] dup [ also assembler
-   2 y+ )# r30 ldd,
-   3 y+ )# r31 ldd,
+   2 y+ )# r26 ldd,
+   3 y+ )# r27 ldd,
    ret,
 end-code
 
 code >r
    r4 pop,
    r5 pop,
-   r31 push,
-   r30 push,
+   r27 push,
+   r26 push,
    ] drop [ also assembler
    r5 push, \ TODO: Use "z ijmp,"
    r4 push,
@@ -123,17 +123,17 @@ code r>
    r4 pop,
    r5 pop,
    ] dup [ also assembler
-   r30 pop,
-   r31 pop,
+   r26 pop,
+   r27 pop,
    r5 push,
    r4 push,
    ret,
 end-code
 
 code branch?
-   r30 r31 or,
-   y+ r30 ld,
-   y+ r31 ld,
+   r26 r27 or,
+   y+ r26 ld,
+   y+ r27 ld,
    ret,
 end-code
 

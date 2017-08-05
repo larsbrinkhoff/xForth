@@ -6,9 +6,10 @@
 \ In small devices, the 16-bit RCALL instruction will be used.
 \
 \ Register usage:
-\ Z      - TOS
-\ r2, r3 - Temporary
+\ X      - TOS
 \ Y      - Data stack pointer
+\ Z      - Temporary
+\ r2-r5  - Temporary
 \ SP     - Return stack pointer
 
 
@@ -31,7 +32,7 @@ also assembler
 : branch?,   s" branch?" "' rcall, 0<>, ;
 : dup,   s" dup" "' rcall, ;
 
-: t-num   dup,  dup 255 and # r30 ldi,  8 rshift # r31 ldi, ;
+: t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
 : dovar, ;
 
 also forth
@@ -54,9 +55,9 @@ only forth also meta also compiler definitions previous
 also assembler
 h: exit   ret, ;
 h: nip   2 # r28 adiw, ;
-h: cell+   2 # r30 adiw, ;
-h: 1+   1 # r30 adiw, ;
-h: 1-   1 # r30 sbiw, ;
+h: cell+   2 # r26 adiw, ;
+h: 1+   1 # r26 adiw, ;
+h: 1-   1 # r26 sbiw, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;
