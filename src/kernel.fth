@@ -153,9 +153,11 @@ end-code
 : assert=   <> if panic then ;
 
 : juggling   42 dup swap nip 42 assert= ;
-: arithmetic   1 2 + 3 + 6 assert= ;
-: return   1 >r 1 r> assert= ;
-: test   juggling arithmetic return ;
+: arithmetic   1 2 3 + + 2* 17 xor 2/ 14 assert= ;
+: return   1 >r r@ r> assert= ;
+: memory   42 96 !  96 c@ 42 assert=  97 c@ 0 assert=
+           1 98 c!  2 99 c!  98 @ 513 assert= ;
+: test   juggling arithmetic return memory ;
 
 also assembler then, \ Jump here from COLD.
 : warm   test bye ;
