@@ -2,7 +2,7 @@ code cold
    140 # r28 ldi, \ Set data stack pointer.
    r29 clr,
    158 # r16 ldi,
-   48909 , \ 61 # r16 out, \ Set return stack pointer.
+   61 r16 out, \ Set return stack pointer.
    ahead, \ Jump to WARM.
 end-code
 

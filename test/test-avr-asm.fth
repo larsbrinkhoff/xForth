@@ -67,6 +67,8 @@ code assembler-test
 
    0 r1 lds,                9010 0000 check
    FFFF r31 sts,            93F0 FFFF check
+   1 r1 in,                 B011 check
+   3D r16 out,              BF0D check
 
    ijmp,                    9409 check
    icall,                   9509 check
