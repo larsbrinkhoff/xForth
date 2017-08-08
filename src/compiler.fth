@@ -15,6 +15,10 @@
 
 : h: : ;
 
+variable ram-dp  96 ram-dp !
+: ram-here   ram-dp @ ;
+: ram-allot   ram-dp +! ;
+
 1 constant t-little-endian
 2 constant t-cell
 include lib/meta.fth
@@ -33,7 +37,6 @@ also assembler
 : dup,   s" dup" "' rcall, ;
 
 : t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
-: dovar, ;
 
 also forth
 ' comp, is t-compile,
@@ -44,8 +47,8 @@ also forth
 host also meta definitions
 
 h: :   parse-name header, ] ;
-h: create   parse-name header, dovar, ;
-h: variable   create cell allot ;
+h: constant   t-constant ;
+h: variable   ram-here t-constant  2 ram-allot ;
 
 h: code   parse-name header,  also assembler ;
 h: end-code   previous ;

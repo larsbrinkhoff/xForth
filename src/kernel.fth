@@ -152,12 +152,17 @@ end-code
 
 : assert=   <> if panic then ;
 
+variable var1
+variable var2
+42 constant const
+
 : juggling   42 dup swap nip 42 assert= ;
 : arithmetic   1 2 3 + + 2* 17 xor 2/ 14 assert= ;
 : return   1 >r r@ r> assert= ;
-: memory   42 96 !  96 c@ 42 assert=  97 c@ 0 assert=
-           1 98 c!  2 99 c!  98 @ 513 assert= ;
-: test   juggling arithmetic return memory ;
+: memory   42 var1 !  var1 c@ 42 assert=  var1 1+ c@ 0 assert=
+           1 var2 c!  2 var2 1+ c!  var2 @ 513 assert= ;
+: ram   var1 96 assert=   var2 98 assert=  const 42 assert= ;
+: test   juggling arithmetic return ram memory ;
 
 also assembler then, \ Jump here from COLD.
 : warm   test bye ;
