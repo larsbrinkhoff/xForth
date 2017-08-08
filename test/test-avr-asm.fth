@@ -53,15 +53,17 @@ code assembler-test
    10 # r19 ori,            6130 check
    F0 # r20 ldi,            EF40 check
 
+   z r20 ld,                8140 check
    z+ r0 ld,                9001 check
    r1 -z st,                9212 check
+   y r0 ld,                 8008 check
    r2 y+ st,                9229 check
    -y r3 ld,                903A check
    x r4 ld,                 904C check
    x+ r5 ld,                905D check
    -x r6 ld,                906E check
-   0 z+ )# r7 ldd,          8070 check
-   29 y+ )# r8 std,         A689 check
+   0 z )# r7 ldd,           8070 check
+   29 y )# r8 std,          A689 check
 
    0 r1 lds,                9010 0000 check
    FFFF r31 sts,            93F0 FFFF check

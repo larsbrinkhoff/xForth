@@ -43,7 +43,7 @@ end-code
 code @
    r26 r30 movw,
    z+ r26 ld,
-   z+ r27 ld,
+   z r27 ld,
    ret,
 end-code
 
@@ -63,7 +63,7 @@ code !
    r26 r30 movw,
    ] drop [ also assembler
    z+ r26 st,
-   z+ r27 st,
+   z r27 st,
    ] drop [ also assembler
    ret,
 end-code
@@ -73,7 +73,7 @@ code c!
    ] drop [ also assembler
    r27 clr,
    z+ r26 st,
-   z+ r27 st,
+   z r27 st,
    ] drop [ also assembler
    ret,
 end-code
@@ -102,8 +102,8 @@ end-code
 
 code over
    ] dup [ also assembler
-   2 y+ )# r26 ldd,
-   3 y+ )# r27 ldd,
+   2 y )# r26 ldd,
+   3 y )# r27 ldd,
    ret,
 end-code
 

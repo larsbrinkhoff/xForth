@@ -38,14 +38,15 @@ defer idx
 \ Set opcode.
 : opcode!   3@ drop >r opcode ! ;
 : field!   opcode swap !bits ;
-: idx!   000F field! ;
-: idx2   drop 1 opcode +! ;
-: lpm0   opcode FFFE @bits 9004 = if 05C4 opcode +! then ;
+: idx!   100F field! ;
+: idx2   1 and opcode +! ;
 : rd!   4 lshift rd-mask @ field! ;
 : rn!   dup 000F field!  5 lshift 0200 field! ;
 : imm!   dup 000F field!  4 lshift 0F00 field! ;
 : wimm!   dup 000F field!  2 lshift 00C0 field! ;
 : disp!   dup 0003 field!  dup 5 lshift 0C00 field!  8 lshift 2000 field! ;
+: ?lpm   opcode @ 9004 = if 95C8 opcode ! then ;
+
 
 \ Access instruction fields.
 : opcode@   opcode @ ;
@@ -106,7 +107,7 @@ format: 2op   op op ;
 format: ds   op !word ;
 format: movw   0F0 rd-mask !  2>r >r 2>r 2/  2r> r> 2/ 2r>  op op ;
 format: adiw   030 rd-mask !  2>r >r >r drop ['] wimm-op  r> r> 18 - 2/ 2r>  op op ;
-format: lpm   ['] idx2 is idx  op op ;
+format: lpm   ['] idx2 is idx  op op ?lpm ;
 format: jump   !jump ;
 format: rjump   !rjump ;
 format: branch   !branch ;
@@ -238,14 +239,15 @@ reg: r24  reg: r25  reg: r26  reg: r27  reg: r28  reg: r29  reg: r30  reg: r31
 drop
 
 \ Index registers.
-: z   ['] lpm0 -addr ;
-1 index: z+
-2 index: -z
-9 index: y+
-A index: -y
-C index: x
-D index: x+
-E index: -x
+0000 index: z
+1001 index: z+
+1002 index: -z
+0008 index: y
+1009 index: y+
+100A index: -y
+100C index: x
+100D index: x+
+100E index: -x
 
 \ Aliases
 : clr,   3dup eor, ;
