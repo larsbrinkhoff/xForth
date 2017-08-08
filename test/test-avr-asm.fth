@@ -94,6 +94,13 @@ cell 2 = [if]
    l brpl,                  F7DA check
    l brid,                  F7D7 check
 
+   1 # 2 sbic,              9911 check
+   7 # 1F sbis,             9BFF check
+   1 # r2 sbrc,             FC21 check
+   7 # r31 sbrs,            FFF7 check
+   1 # 2 sbi,               9A11 check
+   7 # 1F cbi,              98FF check
+
    ahead, then,             C000 check
    0=, if, then,            F401 check
    begin, again,            CFFF check

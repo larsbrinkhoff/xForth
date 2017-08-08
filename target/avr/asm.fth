@@ -34,6 +34,7 @@ variable word  defer ?word,
 variable rd-mask
 defer reg
 defer idx
+defer imm-op
 
 \ Set opcode.
 : opcode!   3@ drop >r opcode ! ;
@@ -44,6 +45,8 @@ defer idx
 : rn!   dup 000F field!  5 lshift 0200 field! ;
 : imm!   dup 000F field!  4 lshift 0F00 field! ;
 : wimm!   dup 000F field!  2 lshift 00C0 field! ;
+: bit!   0007 field! ;
+: io!   3 lshift 00F8 field! ;
 : disp!   dup 0003 field!  dup 5 lshift 0C00 field!  8 lshift 2000 field! ;
 : ?lpm   opcode @ 9004 = if 95C8 opcode ! then ;
 
@@ -79,14 +82,15 @@ also forth definitions
 : reg1   rd! !reg2 ;
 : wimm-op   wimm! ;
 : imm-op   imm! ;
-: addr   ;
+: addr   io! ;
 
 \ Reset assembler state.
 : 0reg   ['] reg1 is reg ;
 : 0w   ['] noop is ?word, ;
 : 0rd   01F0 rd-mask ! ;
 : 0idx   ['] idx! is idx ;
-: 0asm   0reg 0w 0rd 0idx ;
+: 0imm   ['] imm! is imm-op ;
+: 0asm   0reg 0w 0rd 0idx 0imm ;
 
 \ Process one operand.  All operands except a direct address
 \ have the stack picture ( n*x xt -addr ).
@@ -106,8 +110,9 @@ format: 1op   op ;
 format: 2op   op op ;
 format: ds   op !word ;
 format: movw   0F0 rd-mask !  2>r >r 2>r 2/  2r> r> 2/ 2r>  op op ;
-format: adiw   030 rd-mask !  2>r >r >r drop ['] wimm-op  r> r> 18 - 2/ 2r>  op op ;
+format: adiw   030 rd-mask !  ['] wimm! is imm-op  2>r 18 - 2/ 2r>  op op ;
 format: lpm   ['] idx2 is idx  op op ?lpm ;
+format: skip   ['] bit! is imm-op  op op ;
 format: jump   !jump ;
 format: rjump   !rjump ;
 format: branch   !branch ;
@@ -195,10 +200,10 @@ previous also assembler definitions
 940E jump call,
 9600 adiw adiw,
 9700 adiw sbiw,
-\ 9800 cbi,
-\ 9900 sbic,
-\ 9A00 sbi,
-\ 9B00 sbis,
+9800 skip cbi,
+9900 skip sbic,
+9A00 skip sbi,
+9B00 skip sbis,
 9C00 2op mul,
 \ B000 in,
 \ B800 out,
@@ -223,8 +228,8 @@ F406 branch brtc,
 F407 branch brid,
 \ F800 bld,
 \ FA00 bst,
-\ FC00 sbrc,
-\ FE00 sbrs,
+FC00 skip sbrc,
+FE00 skip sbrs,
 
 \ Addressing mode syntax.
 : #   ['] imm-op -addr ;
