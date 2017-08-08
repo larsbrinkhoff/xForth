@@ -113,7 +113,7 @@ code >r
    r26 push,
    r27 push,
    ] drop [ also assembler
-   z ijmp,
+   ijmp,
 end-code
 
 code r>
@@ -122,7 +122,7 @@ code r>
    ] dup [ also assembler
    r27 pop,
    r26 pop,
-   z ijmp,
+   ijmp,
 end-code
 
 code branch?

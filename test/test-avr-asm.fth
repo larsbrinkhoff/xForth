@@ -16,10 +16,10 @@ code assembler-test
 
    nop,                     0000 check
 
-   r0 z xch,                9204 check
-   r1 z las,                9215 check
-   r2 z lac,                9226 check
-   r3 z lat,                9237 check
+   r0 xch,                  9204 check
+   r1 las,                  9215 check
+   r2 lac,                  9226 check
+   r3 lat,                  9237 check
    r4 pop,                  904F check
    r5 push,                 925F check
    r6 com,                  9460 check
@@ -66,8 +66,8 @@ code assembler-test
    0 r1 lds,                9010 0000 check
    FFFF r31 sts,            93F0 FFFF check
 
-   z ijmp,                  9409 check
-   z icall,                 9509 check
+   ijmp,                    9409 check
+   icall,                   9509 check
    0 jmp,                   940C 0000 check
    here rjmp,               CFFF check
    22F123 call,
@@ -76,6 +76,13 @@ cell 2 = [if]
 [else]
                             951E F123 check
 [then]
+
+   z r0 lpm,                95C8 check
+   z r1 lpm,                9014 check
+   z+ r29 lpm,              91D5 check
+   z r2 elpm,               9026 check
+   z+ r3 elpm,              9037 check
+   spm,                     95E8 check
 
    create l \ label
    l brcs,                  F3F8 check

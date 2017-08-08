@@ -33,11 +33,14 @@ variable opcode
 variable word  defer ?word,
 variable rd-mask
 defer reg
+defer idx
 
 \ Set opcode.
 : opcode!   3@ drop >r opcode ! ;
 : field!   opcode swap !bits ;
 : idx!   000F field! ;
+: idx2   drop 1 opcode +! ;
+: lpm0   opcode FFFE @bits 9004 = if 05C4 opcode +! then ;
 : rd!   4 lshift rd-mask @ field! ;
 : rn!   dup 000F field!  5 lshift 0200 field! ;
 : imm!   dup 000F field!  4 lshift 0F00 field! ;
@@ -73,7 +76,6 @@ also forth definitions
 : reg2   rn! ;
 : !reg2   ['] reg2 is reg ;
 : reg1   rd! !reg2 ;
-: idx   idx! ;
 : wimm-op   wimm! ;
 : imm-op   imm! ;
 : addr   ;
@@ -82,7 +84,8 @@ also forth definitions
 : 0reg   ['] reg1 is reg ;
 : 0w   ['] noop is ?word, ;
 : 0rd   01F0 rd-mask ! ;
-: 0asm   0reg 0w 0rd ;
+: 0idx   ['] idx! is idx ;
+: 0asm   0reg 0w 0rd 0idx ;
 
 \ Process one operand.  All operands except a direct address
 \ have the stack picture ( n*x xt -addr ).
@@ -103,6 +106,7 @@ format: 2op   op op ;
 format: ds   op !word ;
 format: movw   0F0 rd-mask !  2>r >r 2>r 2/  2r> r> 2/ 2r>  op op ;
 format: adiw   030 rd-mask !  2>r >r >r drop ['] wimm-op  r> r> 18 - 2/ 2r>  op op ;
+format: lpm   ['] idx2 is idx  op op ;
 format: jump   !jump ;
 format: rjump   !rjump ;
 format: branch   !branch ;
@@ -143,8 +147,8 @@ previous also assembler definitions
 9000 2op ld,
 9200 ds sts,
 9200 2op st,
-\ 9004 lpm,
-\ 9006 elpm,
+9004 lpm lpm,
+9006 lpm elpm,
 9204 1op xch,
 9205 1op las,
 9206 1op lac,
@@ -179,9 +183,7 @@ previous also assembler definitions
 9588 0op sleep,
 9598 0op break,
 95A8 0op wdr,
-95C8 0op lpm,
-95D8 0op elpm,
-\ 95E8 spm,
+95E8 0op spm,
 9409 0op ijmp,
 9419 0op eijmp,
 9509 0op icall,
@@ -236,7 +238,7 @@ reg: r24  reg: r25  reg: r26  reg: r27  reg: r28  reg: r29  reg: r30  reg: r31
 drop
 
 \ Index registers.
-: z ;
+: z   ['] lpm0 -addr ;
 1 index: z+
 2 index: -z
 9 index: y+
