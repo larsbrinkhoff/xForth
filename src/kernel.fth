@@ -141,15 +141,11 @@ end-code
 : =   - 0= ;
 : <>   - 0<> ;
 
-code panic
-   255 dup c, c, \ Illegal instruction.
-   break,
-end-code
-
 code bye
    break,
 end-code
 
+: panic   [ 255 dup c, c, ] bye ; \ FFFF is an undefined instruction.
 : assert=   <> if panic then ;
 
 variable var1
