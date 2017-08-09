@@ -64,8 +64,7 @@ code !
    ] drop [ also assembler
    z+ r26 st,
    z r27 st,
-   ] drop [ also assembler
-   ret,
+   ' drop rjmp,
 end-code
 
 code c!
@@ -74,8 +73,7 @@ code c!
    r27 clr,
    z+ r26 st,
    z r27 st,
-   ] drop [ also assembler
-   ret,
+   ' drop rjmp,
 end-code
 
 code dup
@@ -87,7 +85,7 @@ end-code
 code ?dup
    0 # r26 adiw,
    0<>, if,
-     ] dup [ also assembler
+     ' dup rjmp,
    then,
    ret,
 end-code
@@ -127,9 +125,7 @@ end-code
 
 code branch?
    r26 r27 or,
-   y+ r26 ld,
-   y+ r27 ld,
-   ret,
+   ' drop rjmp,
 end-code
 
 : +!   dup >r @ + r> ! ;
