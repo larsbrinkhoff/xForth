@@ -9,6 +9,7 @@
 \ X      - TOS
 \ Y      - Data stack pointer
 \ Z      - Temporary
+\ r24-r25 - Loop counter
 \ r2-r3  - Temporary
 \ SP     - Return stack pointer
 
@@ -35,6 +36,9 @@ also assembler
 
 : branch?,   s" branch?" "' rcall, 0<>, ;
 : dup,   s" dup" "' rcall, ;
+: >loop,   s" >loop" "' rcall, ;
+: for,   s" (for)" "' rcall, ;
+: unloop,   s" unloop" "' rcall, ;
 
 : t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
 
@@ -73,6 +77,9 @@ h: until   branch?, until, ;
 h: while   branch?, while, ;
 h: repeat   repeat, ;
 previous
+
+h: for   >loop, begin, for, 0<, if, ;
+h: next   again, then, unloop, ;
 
 h: ;   [compile] exit [compile] [ ;
 h: [']   ' t-literal ;

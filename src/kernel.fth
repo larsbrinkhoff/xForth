@@ -128,6 +128,29 @@ code branch?
    ' drop rjmp,
 end-code
 
+code >loop
+   r31 pop,
+   r30 pop,
+   r24 push,
+   r25 push,
+   r26 r24 movw,
+   ] drop [ also assembler
+   ijmp,
+end-code
+
+code (for)
+   1 # r24 sbiw,
+   ret,
+end-code
+
+code unloop
+   r31 pop,
+   r30 pop,
+   r25 pop,
+   r24 pop,
+   ijmp,
+end-code
+
 : +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
 : negate   invert 1+ ;
