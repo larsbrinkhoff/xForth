@@ -1,6 +1,6 @@
 all: check
 
-check: test-avr-asm test-image
+check: test-avr-asm test-msp430-asm test-image
 
 image: src/compiler.fth src/kernel.fth
 	echo include $< | forth
