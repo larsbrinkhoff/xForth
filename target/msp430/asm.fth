@@ -190,7 +190,8 @@ drop
 : if,   here swap execute >mark ;
 : until,   execute ;
 
-\ else,   ahead, 3swap then, ;
+: 3swap   >r rot >r 2swap 2r> >r -rot r> ;
+: else,   ahead, 3swap then, ;
 : while,   >r if, r> ;
 : repeat,   again, then, ;
 
