@@ -1,7 +1,9 @@
 dist: trusty
 language: c
 sudo: required
+env:
+  - TARGET=avr
 install: sh -e test/deps.sh
-script: make
+script: make TARGET=$TARGET
 notifications:
   email: lars@nocrew.org
