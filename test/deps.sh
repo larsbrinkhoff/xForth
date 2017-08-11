@@ -6,6 +6,18 @@ install_lbforth() {
     sudo make install TARGET=x86 OS=linux
 }
 
+install_naken_asm() {
+    git clone https://github.com/mikeakohn/naken_asm
+    cd naken_asm
+    ./configure --enable-msp430
+    make
+    sudo make install
+}
+
 (install_lbforth)
 
-sudo apt-get install simulavr
+case $TARGET in
+    avr) sudo apt-get install simulavr;;
+    msp430) (install_naken_asm);;
+esac
+
