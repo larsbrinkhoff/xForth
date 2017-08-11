@@ -1,5 +1,5 @@
-Forth cross compiler for tiny devices.  The initial target is AVR
-microcontrollers.
+Forth cross compiler for tiny devices.  Supported targets are AVR and
+MSP430.
 
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into

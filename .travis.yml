@@ -3,6 +3,7 @@ language: c
 sudo: required
 env:
   - TARGET=avr
+  - TARGET=msp430
 install: sh -e test/deps.sh
 script: make TARGET=$TARGET
 notifications:
