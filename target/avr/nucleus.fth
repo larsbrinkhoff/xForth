@@ -1,6 +1,11 @@
 0 org
 
 code cold
+   ahead, \ Interrupt vectors.
+   nop, nop, nop, nop, nop, nop, nop, nop,
+   nop, nop, nop, nop, nop, nop, nop, nop,
+   then,
+
    140 # r28 ldi, \ Set data stack pointer.
    r29 clr,
    158 # r16 ldi,
