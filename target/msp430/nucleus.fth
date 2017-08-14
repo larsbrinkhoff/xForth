@@ -55,12 +55,18 @@ end-code
 
 code 0=
    r5 tst,
+label zero?
    0=, if,
-     0# r5 mov,
+     -1# r5 mov,
      ret,
    then,
-   -1# r5 mov,
+   0# r5 mov,
    ret,
+end-code
+
+code =
+   r4 )+ r5 sub,
+   zero? jmp,
 end-code
 
 code +!
@@ -76,7 +82,6 @@ end-code
 
 : 0<>   0= 0= ;
 : -   negate + ;
-: =   - 0= ;
 : <>   - 0<> ;
 
 code bye
