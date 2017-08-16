@@ -1,3 +1,5 @@
+START = 0xF000
+OPTS = -msp430 -break_io 0x0000 -set_pc $(START) -bin -address $(START)
+
 test-image: image
-	printf 'speed 1000\nset pc=0xF000\nrun\nquit\n' | naken_util -msp430 -bin -exe -address 61440 image > $@
-	grep 'Illegal instruction at address 0xf084' $@
+	naken_util $(OPTS) -run image > $@

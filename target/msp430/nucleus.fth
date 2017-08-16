@@ -85,7 +85,9 @@ end-code
 : <>   - 0<> ;
 
 code bye
-   0 ,  \ Illegal instruction.
+   0# 0 & mov,
 end-code
 
-: panic   [ 1 , ] bye ;  \ Illegal instruction.
+code panic
+   1# 0 & mov,
+end-code
