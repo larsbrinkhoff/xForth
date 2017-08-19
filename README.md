@@ -1,12 +1,12 @@
 Forth cross compiler for tiny devices.  Supported targets are AVR and
-MSP430.
+MSP430.  Midrange PIC is in the works.
 
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into
 [lbForth](http://github.com/larsbrinkhoff/lbForth).
 
 The compiler is suitable for parts with 1K program memory and 64 bytes
-RAM.  The kernel code occupies 100-300 bytes, and it's recommended to
+RAM.  The kernel code occupies 100-500 bytes, and it's recommended to
 reserve about 24 bytes for the stacks.  At this size, only a bare
 minimum of Forth words are supported.
 
