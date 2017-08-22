@@ -10,7 +10,7 @@ $(STAMP): $(wildcard conf.mk)
 	rm -f *-stamp
 	touch $@
 
-check: test-avr-asm test-msp430-asm test-image
+check: test-$(TARGET)-asm test-image
 
 image: src/compiler.fth src/kernel.fth $(T)
 	echo include $< | forth
