@@ -4,6 +4,7 @@ sudo: required
 env:
   - TARGET=avr
   - TARGET=msp430
+  - TARGET=pic
 install: sh -e test/deps.sh
 script: make TARGET=$TARGET
 notifications:
