@@ -91,6 +91,7 @@ previous also assembler definitions
 \ 0020*movlb
 \ 0062 option
 0063 0op sleep,
+0064 0op clrwdt,
 
 0080 1op movwf,
 0180 1op clrf,
@@ -146,6 +147,7 @@ previous also assembler definitions
 : fsr   4 ;
 : pclath   0A ;
 : intcn   0B ;
+: option_reg   81 ;
 
 \ Resolve jumps.
 : >mark   here cell - ;
