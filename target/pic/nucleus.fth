@@ -2,6 +2,14 @@ hex
 0 org
 
 code cold
+   5 status bsf,
+   0F movlw,
+   option_reg movwf,
+   5 status bcf,
+   clrwdt,
+
+   50 movlw,
+   s movwf,
    ahead,
 end-code
 
