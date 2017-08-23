@@ -19,4 +19,4 @@ also meta definitions also assembler
 : branch?,   s" branch?" "' call, 0<>, ;
 : dup,   s" dup" "' call, ;
 
-: t-num   dup,  dup 255 and movlw, x movwf,  8 rshift movlw, x 1+ movwf, ;
+: t-num   dup,  dup 255 and movlw, t movwf,  8 rshift movlw, t 1+ movwf, ;
