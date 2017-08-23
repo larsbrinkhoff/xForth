@@ -190,8 +190,11 @@ end-code
 variable rp
 
 code branch?
-   w x movf,
-   w x 1+ iorwf,
+   w t movf,
+   w t 1+ iorwf,
+   x movwf,
+   ' drop call,
+   f x movf,
    return,
 end-code
 
