@@ -79,12 +79,7 @@ code xor
    ' nip goto,
 end-code
 
-code 2*
-   0 status bcf,
-   f t rlf,
-   f t 1+ rlf,
-   return,
-end-code
+: 2*   dup + ;
 
 code 2/
    0 status bcf,
@@ -113,10 +108,7 @@ code @
 end-code
 
 code c@
-   w t movf,
-   fsr movwf,
-   w indf movf,
-   t movwf,
+   ] @ [ also assembler
    t 1+ clrf,
    return,
 end-code
