@@ -37,6 +37,12 @@ code drop
    return,
 end-code
 
+code nip
+   2 movlw,
+   f s addwf,
+   return,
+end-code
+
 code +
    w s movf,
    fsr movwf,
@@ -202,7 +208,6 @@ end-code
 : =   - 0= ;
 : <>   - 0<> ;
 
-: nip   swap drop ;
 : cell+   2 + ;
 : 1-   1 - ;
 
