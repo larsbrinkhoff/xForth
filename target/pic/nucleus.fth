@@ -227,7 +227,9 @@ end-code
 : 1-   1 - ;
 
 code bye
+   60 movwf,
 end-code
 
 code panic
+   63 movwf,
 end-code

@@ -19,5 +19,6 @@ install_naken_asm() {
 case $TARGET in
     avr) sudo apt-get install simulavr;;
     msp430) (install_naken_asm);;
+    pic) sudo apt-get install gpsim;;
 esac
 
