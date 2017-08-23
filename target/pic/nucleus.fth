@@ -220,7 +220,8 @@ end-code
 : 0=   if 0 else -1 then ;
 : 0<>   0= 0= ;
 : =   - 0= ;
-: <>   - 0<> ;
+\ Expand calls inline to reduce return stack usage.
+: <>   invert 1+ + if -1 else 0 then ;
 
 : cell+   2 + ;
 : 1-   1 - ;
