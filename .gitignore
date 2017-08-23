@@ -3,4 +3,5 @@
 /conf.mk
 /test-*
 /image
+/image.hex
 /*-stamp

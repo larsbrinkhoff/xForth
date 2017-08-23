@@ -1,0 +1,4 @@
+processor pic16f84
+load ../../image.hex
+run
+quit
