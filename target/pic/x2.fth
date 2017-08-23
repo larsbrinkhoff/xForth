@@ -13,3 +13,5 @@ h: until   branch?, until, ;
 h: while   branch?, while, ;
 h: repeat   repeat, ;
 previous
+
+rp t-constant rp

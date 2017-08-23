@@ -10,6 +10,10 @@ code cold
 
    50 movlw,
    s movwf,
+
+   40 movlw,
+   rp movwf,
+
    ahead,
 end-code
 
@@ -195,7 +199,6 @@ code over
    return,
 end-code
 
-variable rp
 
 code branch?
    w t movf,
@@ -212,7 +215,7 @@ end-code
 : -   negate + ;
 : >r   rp @ 2 - dup rp ! ! ;
 : r>   rp @ dup @ swap 2 + rp ! ;
-: r@   r> r> dup >r swap >r ;
+: r@   rp @ @ ;
 : +!   dup >r @ + r> ! ;
 : 0=   if 0 else -1 then ;
 : 0<>   0= 0= ;
