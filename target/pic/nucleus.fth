@@ -52,8 +52,8 @@ code +
     f t 1+ incf,
    f fsr incf,
    w indf movf,
-   f t 1+ addwf,   
-   return,
+   f t 1+ addwf,
+   ' nip goto,
 end-code
 
 code xor
@@ -64,7 +64,7 @@ code xor
    f fsr incf,
    w indf movf,
    f t 1+ xorwf,
-   return,
+   ' nip goto,
 end-code
 
 code 2*
