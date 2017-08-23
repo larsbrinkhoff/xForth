@@ -1,5 +1,6 @@
 also assembler
 h: exit   return, ;
+h: clrwdt   clrwdt, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;
