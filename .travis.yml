@@ -5,6 +5,7 @@ env:
   - TARGET=avr
   - TARGET=msp430
   - TARGET=pic
+  - TARGET=stm8
 install: sh -e test/deps.sh
 script: make TARGET=$TARGET
 notifications:

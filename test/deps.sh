@@ -14,11 +14,21 @@ install_naken_asm() {
     sudo make install
 }
 
+install_ucsim() {
+    sudo apt-get install subversion
+    svn checkout svn://svn.code.sf.net/p/sdcc/code/trunk/sdcc sdcc
+    cd sdcc/sim/ucsim
+    ./configure
+    make
+    sudo make install
+}
+
 (install_lbforth)
 
 case $TARGET in
     avr) sudo apt-get install simulavr;;
     msp430) (install_naken_asm);;
     pic) sudo apt-get install gpsim;;
+    stm8) (install_ucsim);;
 esac
 

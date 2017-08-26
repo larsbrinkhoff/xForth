@@ -1,0 +1,4 @@
+file "image.hex"
+pc 0x8080
+run
+kill
