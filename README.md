@@ -1,5 +1,5 @@
 Forth cross compiler for tiny devices.  Supported targets are AVR,
-MSP430, and PIC.
+MSP430, PIC, and STM8.
 
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into
