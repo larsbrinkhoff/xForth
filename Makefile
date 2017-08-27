@@ -15,6 +15,9 @@ check: test-$(TARGET)-asm test-image
 image: src/compiler.fth src/kernel.fth $(T)
 	echo include $< | forth
 
+image.hex: image
+	objcopy -I binary -O ihex --change-section-address .data=$(START) $< $@
+
 target/%.fth: target/$(TARGET)/%.fth $(STAMP)
 	cp $< $@
 
