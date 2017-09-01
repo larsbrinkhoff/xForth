@@ -25,6 +25,18 @@ end-code
 
 : drop   drop ;
 
+code >r
+   exgw,
+   1 ,sp) ldx,
+   x pushw,
+   y ldx,
+   (x) ldx,
+   exgw,
+   3 ,sp) sty,
+   ' drop jra,
+   ret,
+end-code
+
 code r>
    3 ,sp) ldy,
    pushy callr,
@@ -156,15 +168,6 @@ code swap
    2 ,x) sty,
    y popw,
    (x) sty,
-   ret,
-end-code
-
-code >r
-   1 ,sp) ldy,
-   y pushw,
-   x ldy,
-   (y) ldy,
-   3 ,sp) sty,
    ret,
 end-code
 
