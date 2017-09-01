@@ -14,7 +14,8 @@ only forth
 
 also meta definitions also assembler
 
-: short?   dup here - -128 128 within ;
+: pc-   here - 2 - ;
+: short?   dup pc- -128 128 within ;
 : comp,   short? if callr, else call, then ;
 
 : branch?,   s" branch?" "' comp, 0<>, ;

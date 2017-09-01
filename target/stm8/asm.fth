@@ -73,6 +73,9 @@ also forth
 : ?ldw   opcode@ AE = if 0 r> drop then ;
 : short?   ?ldw ?push ?pop ?exg ?call ?cpw  dup 100 u< ;
 
+: range-error   ." Jump range error: " source type abort ;
+: ?range   dup -80 80 within 0= if range-error then ;
+
 \ Set operand data.
 : !data8   data !  ['] data8, is ?data, ;
 : !data16   data !  ['] data16, is ?data, ;
@@ -132,7 +135,7 @@ format: sty   !bar op
  prefix@ 92 = mode@ C0 = and if 91 prefix! exit then
  mode@ 10 = if -8 opcode +! then
  mode@ dup B0 = swap C0 = or if 90 prefix ! then ;
-format: jump   pc- !data8 ;
+format: jump   pc- ?range !data8 ;
 
 \ Instruction mnemonics.
 previous also assembler definitions
@@ -313,14 +316,14 @@ AD jump callr,
 : label   here >r get-current ['] assembler set-current r> constant set-current ;
 : begin,   here ;
 : again,   jra, ;
-: ahead,   0 jra, >mark ;
+: ahead,   here jra, >mark ;
 : then,   >resolve ;
 
 \ Conditional jumps.
 : 0=,   ['] jrne, ;
 : 0<,   ['] jrsle, ;
 : 0<>,   ['] jreq, ;
-: if,   0 swap execute >mark ;
+: if,   here swap execute >mark ;
 : until,   execute ;
 
 : else,   ahead, 2swap then, ;
