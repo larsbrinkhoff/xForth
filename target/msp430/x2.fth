@@ -1,5 +1,7 @@
 also assembler
 h: +   r4 )+ r5 add, ;
+h: and   r4 )+ r5 and, ;
+h: or   r4 )+ r5 bis, ;
 h: xor   r4 )+ r5 xor, ;
 h: 2*   r5 rla, ;
 h: 2/   r5 rra, ;

@@ -21,6 +21,22 @@ code +
    ret,
 end-code
 
+code and
+   y+ r2 ld,
+   r2 r26 and,
+   y+ r2 ld,
+   r2 r27 and,
+   ret,
+end-code
+
+code or
+   y+ r2 ld,
+   r2 r26 or,
+   y+ r2 ld,
+   r2 r27 or,
+   ret,
+end-code
+
 code xor
    y+ r2 ld,
    r2 r26 eor,

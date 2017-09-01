@@ -68,6 +68,28 @@ code +
    ' nip goto,
 end-code
 
+code and
+   w s movf,
+   fsr movwf,
+   w indf movf,
+   f t andwf,
+   f fsr incf,
+   w indf movf,
+   f t 1+ andwf,
+   ' nip goto,
+end-code
+
+code or
+   w s movf,
+   fsr movwf,
+   w indf movf,
+   f t iorwf,
+   f fsr incf,
+   w indf movf,
+   f t 1+ iorwf,
+   ' nip goto,
+end-code
+
 code xor
    w s movf,
    fsr movwf,
