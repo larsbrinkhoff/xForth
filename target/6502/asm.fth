@@ -204,7 +204,7 @@ F8 0op sed,
 
 \ Enter and exit assembler mode.
 : start-code   also assembler 0asm ;
-: end-code     align previous ;
+: end-code     previous ;
 
 base !
 
