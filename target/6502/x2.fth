@@ -1,9 +1,6 @@
 also assembler
 h: exit   rts, ;
-h: drop   inx, ;
-h: 2drop   inx, inx, ;
-
-\ h: nip   inx, ;
+h: nip   inx, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;

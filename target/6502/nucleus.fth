@@ -9,8 +9,8 @@ code cold
 end-code
 
 code dup
-   stack-lo ,x lda,
-   stack-hi ,x ldy,
+   tos lda,
+   tos 1+ ,x ldy,
 label pushay
    dex,
 label storay
@@ -19,17 +19,48 @@ label storay
    rts,
 end-code
 
+code drop
+   inx,
+   stack-lo ,x lda,
+   stack-hi ,x ldy,
+label storetos
+   tos sta,
+   tos 1+ sty,
+   rts,
+end-code
+
+code 2drop
+   inx,
+   ' drop jmp,
+end-code
+
 code >r
    pla,
    w sta,
    pla,
    tay,
-   stack-hi ,x lda,
+   tos lda,
    pha,
-   stack-lo ,x lda,
+   tos 1+ lda,
    pha,
-   inx,
-label jumpw
+   tya,
+   pha,
+   w lda,
+   pha,
+   ' drop jmp,
+end-code
+
+code r>
+   ' dup jsr,
+   pla,
+   w sta,
+   pla,
+   tay,
+   dex,
+   pla,
+   tos sta,
+   pla,
+   tos 1+ ,x sta,
    tya,
    pha,
    w lda,
@@ -37,20 +68,8 @@ label jumpw
    rts,
 end-code
 
-code r>
-   pla,
-   w sta,
-   pla,
-   tay,
-   dex,
-   pla,
-   stack-lo ,x sta,
-   pla,
-   stack-hi ,x sta,
-   jumpw jmp,
-end-code
-
 code r@
+   ' dup jsr,
    txa,
    tsx,
    103 ,x ldy,
@@ -58,142 +77,133 @@ code r@
    104 ,x ldy,
    tax,
    w lda,
-   pushay jmp,
+   storetos jmp,
 end-code
 
 code over
-   stack-hi 1+ ,x ldy,
-   stack-lo 1+ ,x lda,
-   pushay jmp,
+   ' dup jsr,
+   stack-hi 1+ ,x lda,
+   stack-lo 1+ ,x ldy,
+   storetos jmp,
 end-code
 
 code +
-   stack-lo ,x lda,
+   tos lda,
    clc,
-   stack-lo 1+ ,x adc,
-   stack-lo 1+ ,x sta,
-   stack-hi ,x lda,
-   stack-hi 1+ ,x adc,
+   stack-lo ,x adc,
+   tos sta,
+   tos 1+ ,x lda,
+   stack-hi ,x adc,
+label pusha
+   tos 1+ sta,
    inx,
-   stack-hi ,x sta,
    rts,
 end-code
 
 code xor
-   stack-hi ,x lda,
-   stack-hi 1+ ,x eor,
-   tay,
-   stack-lo ,x lda,
-   stack-lo 1+ ,x eor,
-   pushay jmp,
+   tos lda,
+   stack-lo ,x eor,
+   tos sta,
+   tos 1+ ,x lda,
+   stack-hi ,x eor,
+   pusha jmp,
 end-code
 
 code and
-   stack-hi ,x lda,
-   stack-hi 1+ ,x and,
-   tay,
-   stack-lo ,x lda,
-   stack-lo 1+ ,x and,
-   pushay jmp,
+   tos lda,
+   stack-lo ,x and,
+   tos sta,
+   tos 1+ ,x lda,
+   stack-hi ,x and,
+   pusha jmp,
 end-code
 
 code or
-   stack-hi ,x lda,
-   stack-hi 1+ ,x ora,
-   tay,
-   stack-lo ,x lda,
-   stack-lo 1+ ,x ora,
-   pushay jmp,
+   tos lda,
+   stack-lo ,x ora,
+   tos sta,
+   tos 1+ ,x lda,
+   stack-hi ,x ora,
+   pusha jmp,
 end-code
 
 code 2*   
-   stack-lo ,x asl,
-   stack-hi ,x rol,
+   tos asl,
+   tos 1+ rol,
    rts,
 end-code
 
 code 2/   
-   stack-hi ,x lda,
+   tos 1+ lda,
    a asl,
-   stack-hi ,x ror,
-   stack-lo ,x ror,
+   tos 1+ ror,
+   tos ror,
    rts,
 end-code
 
 code invert
-   stack-lo ,x lda,
+   tos lda,
    FF # eor,
-   stack-lo ,x sta,
-   stack-hi ,x lda,
+   tos sta,
+   tos 1+ lda,
    FF # eor,
-   stack-hi ,x sta,
-   rts,
-end-code
-
-code fetchw
-   stack-lo ,x lda,
-   w sta,
-   stack-hi ,x lda,
-   w 1+ sta,
-   0 # ldy,
-   w ),y lda,
+   tos 1+ sta,
    rts,
 end-code
 
 code @
-   ' fetchw jsr,
+   w stx,
+   0 # ldy,
+   tos ),y lda,
+   tax,
    iny,
-   stack-lo ,x sta,
-   w ),y lda,
-   stack-hi ,x sta,
+   tos ),y lda,
+   tos stx,
+   tos 1+ sta,
+   w ldx,
    rts,
 end-code
 
 code c@
-   ' fetchw jsr,
-   storay jmp,
-end-code
-
-code !
-   ' fetchw jsr,
-   stack-lo 1+ ,x lda,
-   w ),y sta,
-   iny,
-   stack-hi 1+ ,x lda,
-label stora
-   w ),y sta,
-   inx,
-   inx,
-   rts,
+   0 # ldy,
+   tos ),y lda,
+   storetos jmp,
 end-code
 
 code c!
-   ' fetchw jsr,
-   stack-lo 1+ ,x lda,
-   stora jmp,
+   0 # ldy,
+label cstore
+   stack-lo ,x lda,
+   tos ),y sta,
+   ' 2drop jmp,
+end-code
+
+code !
+   1 # ldy,
+   stack-hi ,x lda,
+   tos ),y sta,
+   dey,
+   cstore jmp,
 end-code
 
 code swap
-   stack-lo ,x ldy,
-   stack-lo 1+ ,x lda,
-   stack-lo ,x sta,
-   stack-lo 1+ ,x sty,
-   stack-hi ,x ldy,
-   stack-hi 1+ ,x lda,
-   stack-hi ,x sta,
-   stack-hi 1+ ,x sty,
-   rts,
-end-code
-
-code nip
-   inx,
+   tos ldy,
+   stack-lo ,x lda,
+   tos sta,
+   stack-lo ,x sty,
+   tos ldy,
+   stack-hi ,x lda,
+   tos sta,
+   stack-hi ,x sty,
    rts,
 end-code
 
 code branch?
-   inx,
-   stack-lo 1- ,x lda,
-   stack-hi 1- ,x ora,
+   tos lda,
+   tos 1+ ora,
+   php,
+   ' drop jsr,
+   plp,
    rts,
 end-code
 
@@ -201,9 +211,9 @@ end-code
 : +!   dup >r @ + r> ! ;
 
 code 1+
-   stack-lo ,x inc,
+   tos inc,
    0=, if,
-     stack-hi ,x inc,
+     tos 1+ inc,
    then,
    rts,
 end-code

@@ -29,5 +29,5 @@ also meta definitions also assembler
 : branch?,   s" branch?" "' comp, 0<>, ;
 : dup,   s" dup" "' comp, ;
 
-: store   255 and # lda,  ,x sta, ;
-: t-num   dex,  stack-lo over store  stack-hi swap 8 rshift store ;
+: store   255 and # lda,  w + sta, ;
+: t-num   dup,  0 over store  1 swap 8 rshift store ;
