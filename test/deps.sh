@@ -9,7 +9,7 @@ install_lbforth() {
 install_naken_asm() {
     git clone https://github.com/mikeakohn/naken_asm
     cd naken_asm
-    ./configure --enable-msp430
+    ./configure
     make
     sudo make install
 }
@@ -26,6 +26,7 @@ install_ucsim() {
 (install_lbforth)
 
 case $TARGET in
+    6502) (install_naken_asm);;
     avr) sudo apt-get install simulavr;;
     msp430) (install_naken_asm);;
     pic) sudo apt-get install gpsim;;

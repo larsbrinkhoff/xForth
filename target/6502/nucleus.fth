@@ -245,5 +245,6 @@ code bye
 end-code
 
 code panic
-   2 c,
+   1 # lda,
+   0F000 sta,
 end-code

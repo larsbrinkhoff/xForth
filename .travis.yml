@@ -2,6 +2,7 @@ dist: trusty
 language: c
 sudo: required
 env:
+  - TARGET=6502
   - TARGET=avr
   - TARGET=msp430
   - TARGET=pic
