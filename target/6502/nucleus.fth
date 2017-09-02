@@ -9,48 +9,45 @@ code cold
 end-code
 
 code dup
+   stack-lo ,x lda,
+   stack-hi ,x ldy,
+label pushay
    dex,
-   stack-hi 1+ ,x lda,
-   stack-hi ,x sta,
-   stack-lo 1+ ,x lda,
+label storay
    stack-lo ,x sta,
+   stack-hi ,x sty,
    rts,
 end-code
-
-: drop   drop ;
 
 code >r
    pla,
    w sta,
    pla,
-   w 1+ sta,
-   w inc,
-   0=, if,
-     w 1+ inc,
-   then,
+   tay,
    stack-hi ,x lda,
    pha,
    stack-lo ,x lda,
    pha,
    inx,
-   w ) jmp,
+label jumpw
+   tya,
+   pha,
+   w lda,
+   pha,
+   rts,
 end-code
 
 code r>
    pla,
    w sta,
    pla,
-   w 1+ sta,
-   w inc,
-   0=, if,
-     w 1+ inc,
-   then,
+   tay,
    dex,
    pla,
    stack-lo ,x sta,
    pla,
    stack-hi ,x sta,
-   w ) jmp,
+   jumpw jmp,
 end-code
 
 code r@
@@ -60,20 +57,14 @@ code r@
    w sty,
    104 ,x ldy,
    tax,
-   dex,
-   stack-hi ,x sty,
    w lda,
-   stack-lo ,x sta,
-   rts,
+   pushay jmp,
 end-code
 
 code over
-   dex,
-   stack-hi 2 + ,x lda,
-   stack-hi ,x sta,
-   stack-lo 3 + ,x lda,
-   stack-lo ,x sta,
-   rts,
+   stack-hi 1+ ,x ldy,
+   stack-lo 1+ ,x lda,
+   pushay jmp,
 end-code
 
 code +
@@ -83,42 +74,36 @@ code +
    stack-lo 1+ ,x sta,
    stack-hi ,x lda,
    stack-hi 1+ ,x adc,
-   stack-hi 1+ ,x sta,
    inx,
+   stack-hi ,x sta,
    rts,
 end-code
 
 code xor
-   stack-lo ,x lda,
-   stack-lo 1+ ,x eor,
-   stack-lo 1+ ,x sta,
    stack-hi ,x lda,
    stack-hi 1+ ,x eor,
-   stack-hi 1+ ,x sta,
-   inx,
-   rts,
+   tay,
+   stack-lo ,x lda,
+   stack-lo 1+ ,x eor,
+   pushay jmp,
 end-code
 
 code and
-   stack-lo ,x lda,
-   stack-lo 1+ ,x and,
-   stack-lo 1+ ,x sta,
    stack-hi ,x lda,
    stack-hi 1+ ,x and,
-   stack-hi 1+ ,x sta,
-   inx,
-   rts,
+   tay,
+   stack-lo ,x lda,
+   stack-lo 1+ ,x and,
+   pushay jmp,
 end-code
 
 code or
-   stack-lo ,x lda,
-   stack-lo 1+ ,x ora,
-   stack-lo 1+ ,x sta,
    stack-hi ,x lda,
    stack-hi 1+ ,x ora,
-   stack-hi 1+ ,x sta,
-   inx,
-   rts,
+   tay,
+   stack-lo ,x lda,
+   stack-lo 1+ ,x ora,
+   pushay jmp,
 end-code
 
 code 2*   
@@ -129,7 +114,7 @@ end-code
 
 code 2/   
    stack-hi ,x lda,
-   80 # cmp,
+   a asl,
    stack-hi ,x ror,
    stack-lo ,x ror,
    rts,
@@ -145,45 +130,37 @@ code invert
    rts,
 end-code
 
-code @
+code fetchw
    stack-lo ,x lda,
    w sta,
    stack-hi ,x lda,
    w 1+ sta,
    0 # ldy,
    w ),y lda,
-   stack-lo ,x sta,
+   rts,
+end-code
+
+code @
+   ' fetchw jsr,
    iny,
+   stack-lo ,x sta,
    w ),y lda,
    stack-hi ,x sta,
    rts,
 end-code
 
 code c@
-   stack-lo ,x lda,
-   w sta,
-   stack-hi ,x lda,
-   w 1+ sta,
-   0 # ldy,
-   w ),y lda,
-   stack-lo ,x sta,
-   0 # lda,
-   stack-hi ,x sta,
-   rts,
+   ' fetchw jsr,
+   storay jmp,
 end-code
 
-: 2drop   2drop ;
-
 code !
-   stack-lo ,x lda,
-   w sta,
-   stack-hi ,x lda,
-   w 1+ sta,
-   0 # ldy,
+   ' fetchw jsr,
    stack-lo 1+ ,x lda,
    w ),y sta,
    iny,
    stack-hi 1+ ,x lda,
+label stora
    w ),y sta,
    inx,
    inx,
@@ -191,16 +168,9 @@ code !
 end-code
 
 code c!
-   stack-lo ,x lda,
-   w sta,
-   stack-hi ,x lda,
-   w 1+ sta,
-   0 # ldy,
+   ' fetchw jsr,
    stack-lo 1+ ,x lda,
-   w ),y sta,
-   inx,
-   inx,
-   rts,
+   stora jmp,
 end-code
 
 code swap
@@ -229,7 +199,15 @@ end-code
 
 : ?dup   dup if dup then ;
 : +!   dup >r @ + r> ! ;
-: 1+   1 + ;
+
+code 1+
+   stack-lo ,x inc,
+   0=, if,
+     stack-hi ,x inc,
+   then,
+   rts,
+end-code
+
 : negate   invert 1+ ;
 : -   negate + ;
 : 0=   if 0 else -1 then ;
@@ -238,7 +216,7 @@ end-code
 : <>   - 0<> ;
 
 : 1-   1 - ;
-: cell+   2 + ;
+: cell+   1+ 1+ ;
 
 code bye
    brk,
