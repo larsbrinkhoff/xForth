@@ -1,6 +1,10 @@
 Forth cross compiler for tiny devices.  Supported targets are AVR,
 MSP430, PIC, and STM8.
 
+The targets are tested using these simulators: naken_asm, uCsim,
+simulavr, and gpsim.  The status of the tests is:
+[![Test](https://travis-ci.org/larsbrinkhoff/xForth.svg?branch=master)](https://travis-ci.org/larsbrinkhoff/xForth)
+
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into
 [lbForth](http://github.com/larsbrinkhoff/lbForth).
