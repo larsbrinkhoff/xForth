@@ -1,6 +1,6 @@
 also assembler
 h: exit   ret, ;
-h: drop   x incw, x incw, ;
+h: nip   x incw, x incw, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;

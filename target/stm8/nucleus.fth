@@ -14,178 +14,167 @@ code cold
 end-code
 
 code dup
-   x ldy,
-   (y) ldy,
-label pushy
+   tos ldy,
    x decw,
    x decw,
    (x) sty,
-   ret,
-end-code
-
-: drop   drop ;
-
-code >r
-   exgw,
-   1 ,sp) ldx,
-   x pushw,
-   y ldx,
-   (x) ldx,
-   exgw,
-   3 ,sp) sty,
-   ' drop jra,
-   ret,
-end-code
-
-code r>
-   3 ,sp) ldy,
-   pushy callr,
-   y popw,
-   2 addsp,
-   (y) jp,
-end-code
-
-code r@
-   3 ,sp) ldy,
-   pushy jra,
-end-code
-
-code over
-   x ldy,
-   2 ,y) ldy,
-   pushy jra,
-end-code
-
-code +
-   1 ,x) lda,
-   3 ,x) add,
-   3 ,x) sta,
-   (x) lda,
-   2 ,x) adc,
-label store
-   2 ,x) sta,
-   ' drop jra,
-end-code
-
-code xor
-   1 ,x) lda,
-   3 ,x) xor,
-   3 ,x) sta,
-   (x) lda,
-   2 ,x) xor,
-   store jra,
-end-code
-
-code and
-   1 ,x) lda,
-   3 ,x) and,
-   3 ,x) sta,
-   (x) lda,
-   2 ,x) and,
-   store jra,
-end-code
-
-code or
-   1 ,x) lda,
-   3 ,x) or,
-   3 ,x) sta,
-   (x) lda,
-   2 ,x) or,
-   store jra,
-end-code
-
-code 2*   
-   x ldy,
-   (y) ldy,
-   y sllw,
-   (x) sty,
-   ret,
-end-code
-
-code 2/   
-   x ldy,
-   (y) ldy,
-   y sraw,
-   (x) sty,
-   ret,
-end-code
-
-code invert
-   x ldy,
-   (y) ldy,
-   y cplw,
-   (x) sty,
-   ret,
-end-code
-
-code @
-   x ldy,
-   (y) ldy,
-   (y) ldy,
-   (x) sty,
-   ret,
-end-code
-
-code c@
-   x ldy,
-   (y) ldy,
-   (y) lda,
-   (x) clr,
-   1 ,x) sta,
-   ret,
-end-code
-
-code 2drop
-   1C c, 00 c, 04 c, \ 4 # addx,
    ret,
 end-code
 
 code !
    x ldy,
    (y) ldy,
-   x pushw,
-   2 ,x) ldx,
-   (y) stx,
-   x popw,
-   ' 2drop jra,
+   tos ) sty,
+   \ Fall through to "2drop".
+end-code
+
+code 2drop
+   x incw,
+   x incw,
+   \ Fall through to "drop".
+end-code
+
+code drop
+   x ldy,
+   (y) ldy,
+   x incw,
+   x incw,
+label storetos
+   tos sty,
+   ret,
 end-code
 
 code c!
-   x ldy,
-   (y) ldy,
-   3 ,x) lda,
-   (y) sta,
+   1 ,x) lda,
+   tos ) sta,
    ' 2drop jra,
+end-code
+
+code branch?
+   tos ldy,
+   y pushw,
+   ' drop callr,
+   y popw,
+   y tnzw,
+   ret,
+end-code
+
+code >r
+   exgw,
+   1 ,sp) ldx,
+   x pushw,
+   tos ldx,
+   exgw,
+   3 ,sp) sty,
+   ' drop jra,
+end-code
+
+code r>
+   ' dup callr,
+   3 ,sp) ldy,
+   tos sty,
+   y popw,
+   2 addsp,
+   (y) jp,
+end-code
+
+code r@
+   ' dup callr,
+   3 ,sp) ldy,
+   storetos jra,
+end-code
+
+code over
+   ' dup callr,
+   x ldy,
+   2 ,y) ldy,
+   storetos jra,
+end-code
+
+code +
+   x ldy,
+   (x) ldy,
+   72 c, B9 c, tos , \ tos addy,
+   x incw,
+   x incw,
+   storetos jra,
+end-code
+
+code xor
+   (x) lda,
+   tos xor,
+   tos sta,
+   x incw,
+   (x) lda,
+   tos 1+ xor,
+label stora
+   tos 1+ sta,
+   x incw,
+   ret,
+end-code
+
+code and
+   (x) lda,
+   tos and,
+   tos sta,
+   x incw,
+   (x) lda,
+   tos 1+ and,
+   stora jra,
+end-code
+
+code or
+   (x) lda,
+   tos or,
+   tos sta,
+   x incw,
+   (x) lda,
+   tos 1+ or,
+   stora jra,
+end-code
+
+code 2*
+   tos ldy,
+   y sllw,
+   storetos jra,
+end-code
+
+code 2/   
+   tos ldy,
+   y sraw,
+   storetos jra,
+end-code
+
+code invert
+   tos ldy,
+   y cplw,
+label storetos2
+   tos sty,
+   ret,
+end-code
+
+code @
+   tos ) ldy,
+   storetos2 jra,
+end-code
+
+code c@
+   tos ) lda,
+   tos clr,
+   tos 1+ sta,
+   ret,
 end-code
 
 code swap
    x ldy,
-   2 ,x) ldx,
+   (x) ldx,
    x pushw,
    y ldx,
-   (x) ldx,
+   tos ldx,
    exgw,
-   2 ,x) sty,
+   (x) sty,
    y popw,
-   (x) sty,
-   ret,
-end-code
-
-code nip
-   x ldy,
-   (y) ldy,
-   x incw,
-   x incw,
-   (x) sty,
-   ret,
-end-code
-
-code branch?
-   x ldy,
-   x incw,
-   x incw,
-   (y) ldy,
-   ret,
+   storetos2 jra,
 end-code
 
 : ?dup   dup if dup then ;

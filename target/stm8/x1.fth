@@ -7,10 +7,14 @@
 \ X  - data stack pointer.
 \ Y  - temporary.
 \ SP - return stack pointer.
+\
+\ TOS is in low memory, where it can be accessed using the short
+\ memory addressing mode.
 
 only forth
 
-0 ram-dp !
+0 constant tos
+2 ram-dp !
 
 also meta definitions also assembler
 
@@ -21,7 +25,4 @@ also meta definitions also assembler
 : branch?,   s" branch?" "' comp, 0<>, ;
 : dup,   s" dup" "' comp, ;
 
-: !#   # lda,  (x) sta, ;
-: !0   (x) clr, ;
-: push   x decw,  255 and ?dup if !# else !0 then ;
-: t-num   dup push 8 rshift push ;
+: t-num   dup,  # ldy,  tos sty, ;
