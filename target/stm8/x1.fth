@@ -10,7 +10,8 @@
 
 only forth
 
-0 ram-dp !
+0 constant tos
+2 ram-dp !
 
 also meta definitions also assembler
 

@@ -23,7 +23,23 @@ label pushy
    ret,
 end-code
 
+code tosdup
+   tos ldy,
+label pushy
+   x decw,
+   x decw,
+   (x) sty,
+   ret,
+end-code
+
 : drop   drop ;
+
+code tosdrop
+   x ldy,
+   (y) ldy,
+   tos sty,
+   ret,
+end-code
 
 code >r
    exgw,
@@ -67,6 +83,15 @@ label store
    ' drop jra,
 end-code
 
+code tos+
+   (x) ldy,
+   tos addy,
+   tos sty,
+   incx,
+   incx,
+   ret,
+end-code
+
 code xor
    1 ,x) lda,
    3 ,x) xor,
@@ -102,6 +127,13 @@ code 2*
    ret,
 end-code
 
+code tos2*
+   tos ldy,
+   y sllw,
+   tos sty,
+   ret,
+end-code
+
 code 2/   
    x ldy,
    (y) ldy,
@@ -118,11 +150,24 @@ code invert
    ret,
 end-code
 
+code tosinvert
+   tos ldy,
+   y cplw,
+   tos sty,
+   ret,
+end-code
+
 code @
    x ldy,
    (y) ldy,
    (y) ldy,
    (x) sty,
+   ret,
+end-code
+
+code tos@
+   tos ) ldy,
+   tos sty,
    ret,
 end-code
 
@@ -135,9 +180,22 @@ code c@
    ret,
 end-code
 
+code tosc@
+   tos ) lda,
+   tos clr,
+   tos 1+ sta,
+   ret,
+end-code
+
 code 2drop
    1C c, 00 c, 04 c, \ 4 # addx,
    ret,
+end-code
+
+code tos2drop
+   incx,
+   incx,
+   ' drop jmp,
 end-code
 
 code !
@@ -150,11 +208,24 @@ code !
    ' 2drop jra,
 end-code
 
+code tos!
+   x ldy,
+   2 ,y) ldy,
+   tos ) sty,
+   ' 2drop jra,
+end-code
+
 code c!
    x ldy,
    (y) ldy,
    3 ,x) lda,
    (y) sta,
+   ' 2drop jra,
+end-code
+
+code tosc!
+   1 ,x) lda,
+   tos ) sta,
    ' 2drop jra,
 end-code
 
@@ -186,6 +257,10 @@ code branch?
    x incw,
    (y) ldy,
    ret,
+end-code
+
+code tosbranch?
+   ' drop jmp,
 end-code
 
 : ?dup   dup if dup then ;
