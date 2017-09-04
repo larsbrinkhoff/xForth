@@ -218,6 +218,8 @@ code 1+
    rts,
 end-code
 
+: (lit)   r> r> dup 1+ @ swap 2 + >r >r ;
+
 : negate   invert 1+ ;
 : -   negate + ;
 : 0=   if 0 else -1 then ;
