@@ -210,7 +210,19 @@ end-code
 
 : negate   invert 1+ ;
 : -   negate + ;
-: 0=   if 0 else -1 then ;
+
+code 0=
+   0 # ldy,
+   stack-lo ,x lda,
+   stack-hi ,x ora,
+   0=, if,
+     dey,
+   then,
+   stack-lo ,x sty,
+   stack-hi ,x sty,
+   rts,
+end-code
+
 : 0<>   0= 0= ;
 : =   - 0= ;
 : <>   - 0<> ;
