@@ -179,14 +179,28 @@ end-code
 
 : ?dup   dup if dup then ;
 : +!   dup >r @ + r> ! ;
-: 1+   1 + ;
+
+code 1+
+   tos ldy,
+   72 c, A9 c, 0 c, 1 c, \ 1 # addy,
+   tos sty,
+   ret,
+end-code
+
 : negate   invert 1+ ;
 : -   negate + ;
 : 0=   -1 swap if 1+ then ;
 : 0<>   0= 0= ;
 : =   - 0= ;
 : <>   - 0<> ;
-: 1-   1 - ;
+
+code 1-
+   tos ldy,
+   72 c, A9 c, -1 , \ -1 # addy,
+   tos sty,
+   ret,
+end-code
+
 : cell+   1+ 1+ ;
 
 code bye
