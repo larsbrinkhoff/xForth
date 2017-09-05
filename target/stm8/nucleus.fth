@@ -193,13 +193,12 @@ end-code
 : 1+   1 + ;
 : negate   invert 1+ ;
 : -   negate + ;
-: 0=   if 0 else -1 then ;
+: 0=   -1 swap if 1+ then ;
 : 0<>   0= 0= ;
 : =   - 0= ;
 : <>   - 0<> ;
-
 : 1-   1 - ;
-: cell+   2 + ;
+: cell+   1+ 1+ ;
 
 code bye
    break,
@@ -207,5 +206,4 @@ end-code
 
 code panic
    05 c,
-   nop,
 end-code
