@@ -1,0 +1,5 @@
+break 0x1B
+break 0x23
+run
+quit
+

@@ -27,6 +27,7 @@ install_ucsim() {
 
 case $TARGET in
     6502) (install_naken_asm);;
+    8051) (install_ucsim);;
     avr) sudo apt-get install simulavr;;
     msp430) (install_naken_asm);;
     pic) sudo apt-get install gpsim;;
