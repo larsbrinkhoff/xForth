@@ -2,8 +2,8 @@
 
 This is a Forth cross compiler for tiny devices.  It's based on
 [lbForth](http://github.com/larsbrinkhoff/lbForth).  Supported targets
-are 8051, AVR, MSP430, PIC, and STM8.  There's also support for the
-some classic processors: 6502 and PDP-8.
+are 8051, AVR, MSP430, PIC, and STM8.  There's also support for some
+classic machines: 6502 and PDP-8.
 
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into lbForth.
