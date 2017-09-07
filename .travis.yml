@@ -6,6 +6,7 @@ env:
   - TARGET=8051
   - TARGET=avr
   - TARGET=msp430
+  - TARGET=pdp8
   - TARGET=pic
   - TARGET=stm8
 install: sh -e test/deps.sh

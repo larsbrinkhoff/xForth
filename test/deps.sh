@@ -30,6 +30,7 @@ case $TARGET in
     8051) (install_ucsim);;
     avr) sudo apt-get install simulavr;;
     msp430) (install_naken_asm);;
+    pdp8) sudo apt-get install simh;;
     pic) sudo apt-get install gpsim;;
     stm8) (install_ucsim);;
 esac
