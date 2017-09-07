@@ -9,6 +9,8 @@ variable ram-dp
 : ram-here   ram-dp @ ;
 : ram-allot   ram-dp +! ;
 
+0 value latest
+
 1 constant t-little-endian
 2 constant t-cell
 include lib/meta.fth
@@ -17,7 +19,7 @@ only forth also meta definitions
 
 include target/asm.fth
 
-: header, ( a u -- ) here t-word ;
+: header, ( a u -- ) here t-word  here to latest ;
 
 include target/x1.fth
 
