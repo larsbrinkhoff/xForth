@@ -9,7 +9,7 @@ This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into lbForth.
 
 The targets are tested using these simulators: naken_asm, uCsim,
-simulavr, and gpsim.  The status of the tests is:
+simulavr, gpsim, and simh.  The status of the tests is:
 [![Test](https://travis-ci.org/larsbrinkhoff/xForth.svg?branch=master)](https://travis-ci.org/larsbrinkhoff/xForth)
 
 The compiler is suitable for parts with 1K program memory and 64 bytes
