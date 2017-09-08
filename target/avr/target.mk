@@ -4,4 +4,4 @@ test-image: image
 	grep "BREAK POINT" $@
 
 upload: image
-	sudo avrdude -C target/avr/avrdude.conf -c usbtiny -p attiny85 -U flash:w:image:r -P usb
+	sudo avrdude -C $(TDIR)/avrdude.conf -c usbtiny -p attiny85 -U flash:w:image:r -P usb

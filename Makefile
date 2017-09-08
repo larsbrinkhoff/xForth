@@ -1,8 +1,8 @@
 -include conf.mk
-include target/$(TARGET)/target.mk
 
 T = target/asm.fth target/x1.fth target/x2.fth target/nucleus.fth
 STAMP = $(TARGET)-stamp
+TDIR = target/$(TARGET)
 
 all: check
 
@@ -18,7 +18,7 @@ image: src/compiler.fth src/kernel.fth $(T)
 image.hex: image
 	objcopy -I binary -O ihex --change-section-address .data=$(START) $< $@
 
-target/%.fth: target/$(TARGET)/%.fth $(STAMP)
+target/%.fth: $(TDIR)/%.fth $(STAMP)
 	cp $< $@
 
 test-%-asm: test/test-%-asm.fth target/%/asm.fth
@@ -27,3 +27,5 @@ test-%-asm: test/test-%-asm.fth target/%/asm.fth
 
 clean:
 	rm -f test-* image target/*.fth *-stamp
+
+include $(TDIR)/target.mk
