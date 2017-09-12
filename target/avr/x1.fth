@@ -24,3 +24,5 @@ also meta definitions also assembler
 : dup,   s" dup" "' rcall, ;
 
 : t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
+
+: end-target ;

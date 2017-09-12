@@ -25,3 +25,5 @@ also meta definitions also assembler
 : !0   (x) clr, ;
 : push   x decw,  255 and ?dup if !# else !0 then ;
 : t-num   dup push 8 rshift push ;
+
+: end-target ;

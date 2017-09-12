@@ -50,6 +50,8 @@ target
 
 include src/kernel.fth
 
+end-target
+
 only forth also meta also t-words resolve-all-forward-refs
 
 only forth also meta save-target

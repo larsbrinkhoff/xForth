@@ -24,3 +24,5 @@ also meta definitions also assembler
 : dup,   s" dup" "' # call, ;
 
 : t-num   dup,  # r5 mov, ;
+
+: end-target ;
