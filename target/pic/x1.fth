@@ -21,3 +21,5 @@ also meta definitions also assembler
 : dup,   s" dup" "' call, ;
 
 : t-num   dup,  dup 255 and movlw, t movwf,  8 rshift movlw, t 1+ movwf, ;
+
+: end-target ;
