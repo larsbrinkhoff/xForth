@@ -28,6 +28,30 @@ install_ucsim() {
     sudo make install
 }
 
+install_binutils_arm() {
+    sudo apt-get install binutils-arm-none-eabi
+}
+
+install_qemu_cortexm0() {
+    #test -f $HOME/bin/s51 && return
+    sudo apt-get install libglib2.0-dev libpixman-1-dev libfdt-dev
+    git clone https://github.com/sushihangover/qemu
+    cd qemu
+    git checkout cortexm
+    ./configure --disable-werror --target-list=arm-softmmu --prefix=$HOME
+    make
+    sudo make install
+}
+
+install_thumbulator() {
+    #test -f $HOME/bin/s51 && return
+    #sudo apt-get install libglib2.0-dev libpixman-1-dev libfdt-dev
+    git clone https://github.com/ekoeppen/thumbulator
+    cd thumbulator
+    make
+    sudo make install
+}
+
 (install_lbforth)
 
 case $TARGET in
@@ -38,5 +62,6 @@ case $TARGET in
     pdp8) sudo apt-get install simh;;
     pic) sudo apt-get install gpsim;;
     stm8) (install_ucsim);;
+    thumb) (install_thumbulator);;
 esac
 
