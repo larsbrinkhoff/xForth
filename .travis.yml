@@ -9,6 +9,7 @@ env:
   - TARGET=pdp8
   - TARGET=pic
   - TARGET=stm8
+  - TARGET=thumb
 cache:
   directories:
     - $HOME/bin
