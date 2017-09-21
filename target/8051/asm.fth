@@ -230,7 +230,7 @@ F0 constant b
 : start-code   also assembler 0asm ;
 : end-code     previous ;
 
-base !
+also forth base ! previous
 
 previous definitions also assembler
 

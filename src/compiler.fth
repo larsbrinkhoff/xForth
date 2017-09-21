@@ -11,8 +11,7 @@ variable ram-dp
 
 0 value latest
 
-1 constant t-little-endian
-2 constant t-cell
+include target/params.fth
 include lib/meta.fth
 
 only forth also meta definitions

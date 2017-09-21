@@ -1,6 +1,7 @@
 -include conf.mk
 
-T = target/asm.fth target/x1.fth target/x2.fth target/nucleus.fth
+T = target/params.fth target/asm.fth target/x1.fth target/x2.fth \
+    target/nucleus.fth
 STAMP = $(TARGET)-stamp
 TDIR = target/$(TARGET)
 
