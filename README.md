@@ -2,14 +2,14 @@
 
 This is a Forth cross compiler for tiny devices.  It's based on
 [lbForth](http://github.com/larsbrinkhoff/lbForth).  Supported targets
-are 8051, AVR, MSP430, PIC, and STM8.  There's also support for some
-classic machines: 6502 and PDP-8.
+are 8051, AVR, Cortex-M, MSP430, PIC, and STM8.  There's also support
+for some classic machines: 6502 and PDP-8.
 
 This is a temporary battleground to get things up and running.  I
 expect to fold the finished result back into lbForth.
 
 The targets are tested using these simulators: naken_asm, uCsim,
-simulavr, gpsim, and simh.  The status of the tests is:
+simulavr, gpsim, simh, and thumbulator.  The status of the tests is:
 [![Test](https://travis-ci.org/larsbrinkhoff/xForth.svg?branch=master)](https://travis-ci.org/larsbrinkhoff/xForth)
 
 The compiler is suitable for parts with 1K program memory and 64 bytes
