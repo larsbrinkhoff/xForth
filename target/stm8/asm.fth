@@ -288,7 +288,7 @@ AD jump callr,
 : #      00 40 00 A0 ['] imm-op -addr ;
 : a      00 40 00 00 ['] accumulator -addr ;
 : x      00 00 00 85 ['] index -addr ;
-: y      90 00 90 85 ['] index -addr  90 prefix ! ;
+: y      90 00 90 85 ['] index -addr  90 !prefix ;
 : sp     00 00 00 88 ['] accumulator -addr ;
 : cc     00 84 00 00 ['] accumulator -addr ;
 : xl     00 40 00 95 ['] accumulator -addr ;
@@ -337,7 +337,7 @@ AD jump callr,
 : start-code   also assembler 0asm ;
 : end-code     previous ;
 
-base !
+also forth base ! previous
 
 previous definitions also assembler
 
