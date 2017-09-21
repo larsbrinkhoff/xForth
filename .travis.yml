@@ -9,6 +9,10 @@ env:
   - TARGET=pdp8
   - TARGET=pic
   - TARGET=stm8
+cache:
+  directories:
+    - $HOME/bin
+    - $HOME/share
 install: sh -e test/deps.sh
 script: make TARGET=$TARGET
 notifications:
