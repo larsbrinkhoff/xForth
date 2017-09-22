@@ -26,4 +26,5 @@ also meta definitions also assembler
 : push   x decw,  255 and ?dup if !# else !0 then ;
 : t-num   dup push 8 rshift push ;
 
+: prologue, ;
 : end-target ;

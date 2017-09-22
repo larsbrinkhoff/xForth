@@ -32,4 +32,5 @@ also meta definitions also assembler
 : store   255 and # lda,  ,x sta, ;
 : t-num   dex,  stack-lo over store  stack-hi swap 8 rshift store ;
 
+: prologue, ;
 : end-target ;

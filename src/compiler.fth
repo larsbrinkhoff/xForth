@@ -29,7 +29,7 @@ also forth
 
 host also meta definitions
 
-h: :   parse-name header, ] ;
+h: :   parse-name header, prologue, ] ;
 h: constant   t-constant ;
 h: variable   ram-here t-constant  t-cell ram-allot ;
 

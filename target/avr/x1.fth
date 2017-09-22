@@ -25,4 +25,5 @@ also meta definitions also assembler
 
 : t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
 
+: prologue, ;
 : end-target ;

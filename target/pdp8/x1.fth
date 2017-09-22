@@ -34,4 +34,5 @@ also meta definitions also assembler
 
 : '   ' cell/ ;
 
+: prologue, ;
 : end-target   page ;
