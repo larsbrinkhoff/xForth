@@ -25,4 +25,5 @@ also meta definitions also assembler
 
 : t-num   dup,  # r5 mov, ;
 
+: prologue, ;
 : end-target ;

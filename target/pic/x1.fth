@@ -22,4 +22,5 @@ also meta definitions also assembler
 
 : t-num   dup,  dup 255 and movlw, t movwf,  8 rshift movlw, t 1+ movwf, ;
 
+: prologue, ;
 : end-target ;
