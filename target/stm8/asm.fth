@@ -321,7 +321,7 @@ AD jump callr,
 
 \ Conditional jumps.
 : 0=,   ['] jrne, ;
-: 0<,   ['] jrsle, ;
+: 0<,   ['] jrpl, ;
 : 0<>,   ['] jreq, ;
 : if,   here swap execute >mark ;
 : until,   execute ;

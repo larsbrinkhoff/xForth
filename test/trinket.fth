@@ -16,19 +16,6 @@ end-code
 variable n
 variable x
 
-code 0<
-   0 # r26 adiw,
-   0<, if,
-     FF # r26 ldi,
-     FF # r27 ldi,
-     ret,
-   else,
-     0 # r26 ldi,
-     0 # r27 ldi,
-     ret,
-  then,
-end-code
-
 : setup  set-output  F000 n !  1000 x ! ;
 : delay   begin 1- dup 0= until drop ;
 : led-on   2 !portb x @ delay ;

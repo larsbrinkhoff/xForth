@@ -69,6 +69,16 @@ code =
    zero? jmp,
 end-code
 
+code 0<
+   r5 tst,
+   0<, if,
+     -1# r5 mov,
+     ret,
+   then,
+   0# r5 mov,
+   ret,
+end-code
+
 code +!
    r4 )+ 0 r5 )# add,
    ' drop jmp,

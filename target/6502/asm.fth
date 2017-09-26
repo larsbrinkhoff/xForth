@@ -190,6 +190,7 @@ F8 0op sed,
 \ Conditional jumps.
 : 0=,   ['] bne, ;
 : 0<,   ['] bcs, ;
+: cs,   ['] bcc, ;
 : 0<>,   ['] beq, ;
 : if,   0 swap execute >mark1 ;
 : until,   execute ;

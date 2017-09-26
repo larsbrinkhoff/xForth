@@ -150,6 +150,19 @@ code branch?
    ' drop rjmp,
 end-code
 
+code 0<
+   0 # r26 adiw,
+   0<, if,
+     255 # r26 ldi,
+     255 # r27 ldi,
+     ret,
+   else,
+     0 # r26 ldi,
+     0 # r27 ldi,
+     ret,
+  then,
+end-code
+
 : +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
 : negate   invert 1+ ;
