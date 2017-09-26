@@ -30,16 +30,6 @@ code panic
    FF # bkpt,
 end-code
 
-code dup
-   ] dup [ also assembler
-   lr bx,
-end-code
-
-code drop
-   ] drop [ also assembler
-   lr bx,
-end-code
-
 code swap
    r7 ) r5 ldr,
    r7 ) r6 str,
@@ -56,34 +46,43 @@ end-code
 code +
    r7 ) r5 ldr,
    r6 r5 r6 add,
+label bump
    4 # r7 addi,
    lr bx,
+end-code
+
+code -
+   r7 ) r5 ldr,
+   r6 r5 r6 sub,
+   bump b,
 end-code
 
 code or
    r7 ) r5 ldr,
    r5 r6 orr,
-   4 # r7 addi,
-   lr bx,
+   bump b,
 end-code
 
 code xor
    r7 ) r5 ldr,
    r5 r6 eor,
-   4 # r7 addi,
-   lr bx,
+   bump b,
 end-code
 
 code and
    r7 ) r5 ldr,
    r5 r6 and,
-   4 # r7 addi,
-   lr bx,
+   bump b,
 end-code
 
 code >r
    {r6} push,
-   ' drop b,
+   \ Fall through.
+end-code
+
+code drop
+   ] drop [ also assembler
+   lr bx,
 end-code
 
 code r>
@@ -123,19 +122,20 @@ code branch?
    lr bx,
 end-code
 
-(* code 0=
-   0 # r5 movi,
-   r6 tst,
-   0<> if,
-     1 # r5 subi,
-   then,
-   r5 r6 mov,
+code 0=
+   r6 r5 neg,
+   r6 r5 adc,
+   r5 r6 neg,
    lr bx,
-end-code *)
+end-code
 
-: +!   dup >r @ + r> ! ;
-: 0=   if 0 else -1 then ;
-: 0<>   0= 0= ;
-: -   negate + ;
+code +!
+   r7 ) r5 ldr,
+   r6 ) r4 ldr,
+   r4 r5 r5 add,
+   r6 ) r5 str,
+   ' 2drop b,
+end-code
+
 : =   - 0= ;
 : <>   - 0<> ;
