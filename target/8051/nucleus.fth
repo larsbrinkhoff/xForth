@@ -233,6 +233,19 @@ code branch?
    ret,
 end-code
 
+code 0<
+   dph lda,
+   rlc,
+   cs, if,
+     FF # dph movi,
+     FF # dpl movi,
+   else,
+     0 # dph movi,
+     0 # dpl movi,
+   then,
+   ret,
+end-code
+
 : ?dup   dup if dup then ;
 : +!   dup >r @ + r> ! ;
 : negate   invert 1+ ;

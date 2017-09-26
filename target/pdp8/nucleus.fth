@@ -192,6 +192,15 @@ code -3
    exit,
 end-code
 
+code 0<
+   0<, if,
+     cla, cma, +,
+   else,
+     cla,
+   then,
+   exit,
+end-code
+
 : +!   dup >r @ + r> ! ;
 : -   negate + ;
 : 0=   if 0 else -1 then ;

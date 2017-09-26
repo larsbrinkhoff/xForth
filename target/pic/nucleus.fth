@@ -213,13 +213,21 @@ code over
    return,
 end-code
 
-
 code branch?
    w t movf,
    w t 1+ iorwf,
    x movwf,
    ' drop call,
    f x movf,
+   return,
+end-code
+
+code 0<
+   0 movlw,
+   7 t 1+ btfsc,
+    FF movlw,
+   t movwf,
+   t 1+ movwf,
    return,
 end-code
 

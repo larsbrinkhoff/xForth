@@ -216,6 +216,7 @@ F0 constant b
 \ Conditional jumps.
 : 0=,   ['] jnz, ;
 : 0<>,   ['] jz, ;
+: cs,   ['] jnc, ;
 : if,   here swap execute >mark ;
 : until,   execute ;
 

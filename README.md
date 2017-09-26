@@ -40,4 +40,4 @@ Run-time words:
     DROP NIP DUP ?DUP SWAP OVER
     >R R> R@
     + - 2* 2/ INVERT NEGATE AND OR XOR 1+ 1- CELL+
-    0= 0<> = <>
+    0= 0< 0<> = <>

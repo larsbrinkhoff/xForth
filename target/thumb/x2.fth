@@ -13,6 +13,7 @@ h: cell+   4 # r6 addi, ;
 h: negate   r6 r6 neg, ;
 h: invert   r6 r6 mvn, ;
 h: 0<>   r6 r5 neg,  r6 r6 sbc, ;
+h: 0<   1F # r6 r6 asri, ;
 
 h: if   branch?, if, ;
 h: ahead   ahead, ;

@@ -218,9 +218,19 @@ code 0=
    0=, if,
      dey,
    then,
+label pushyy
    stack-lo ,x sty,
    stack-hi ,x sty,
    rts,
+end-code
+
+code 0<
+   0 # ldy,
+   stack-hi ,x asl,
+   cs, if,
+     dey,
+   then,
+   pushyy jmp,
 end-code
 
 : 0<>   0= 0= ;

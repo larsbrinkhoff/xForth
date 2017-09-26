@@ -188,6 +188,17 @@ code branch?
    ret,
 end-code
 
+code 0<
+   a clr,
+   (x) tnz,
+   0<, if,
+     a dec,
+   then,
+   (x) sta,
+   1 ,x) sta,
+   ret,
+end-code
+
 : ?dup   dup if dup then ;
 : +!   dup >r @ + r> ! ;
 : 1+   1 + ;
