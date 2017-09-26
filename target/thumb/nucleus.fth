@@ -11,9 +11,9 @@
 hex
 
 20000800 , \ Initial stack pointer.
-00000101 , \ Reset vector
+00000081 , \ Reset vector
 
-100 here - allot
+80 here - allot
 
 code cold
    sp r7 movh,
