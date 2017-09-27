@@ -25,6 +25,10 @@ file.  ELF or Intel hex format can be made available on request.
 The assemblers, compiler, and kernel are written in Forth and are all
 very simple.  The user is encouraged to make modifications as see fit.
 
+### Manual
+
+[See here](doc/manual.md).
+
 ### Glossary 
  
 Compile-time words:
