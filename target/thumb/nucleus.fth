@@ -7,13 +7,13 @@
 \ 0xE0000000 peripheral
 \   E000E000 system control
 
-0 org
+flash-start org
 hex
 
 20000800 , \ Initial stack pointer.
-00000081 , \ Reset vector
+flash-start 81 + , \ Reset vector
 
-80 here - allot
+flash-start 80 + here - allot
 
 code cold
    sp r7 movh,
