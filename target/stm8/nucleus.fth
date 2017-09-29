@@ -7,9 +7,9 @@ code cold
    0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int,
    0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int,
    0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int, 0 int,
-   17FF # ldx,
+   3FF # ldx,
    x ldsp,
-   1700 # ldx,
+   2FF # ldx,
    ahead, nop, \ Leave room to make this a JP.
 end-code
 
