@@ -26,6 +26,9 @@ test-%-asm: test/test-%-asm.fth target/%/asm.fth
 	echo include $< | forth > $@
 	grep "Assembler test: PASS" $@
 
+.gdbinit: $(TDIR)/gdbinit
+	cp $< $@
+
 clean:
 	rm -f test-* image target/*.fth *-stamp
 

@@ -1,0 +1,8 @@
+set arm force-mode thumb
+target extended-remote localhost:4242
+load image.elf
+
+define s
+  si
+  disass $pc-8, $pc+12
+end
