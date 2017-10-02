@@ -1,0 +1,6 @@
+device pic16f1619
+set system.disableerrormsg true
+hwtool sk -p
+program "./image.hex"
+reset mclr
+quit
