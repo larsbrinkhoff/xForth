@@ -16,6 +16,7 @@ end-code
 
 code c!
    r4 )+ 0 r5 )# .b mov,
+   1# r4 add,
    ' drop jmp,
 end-code
 
