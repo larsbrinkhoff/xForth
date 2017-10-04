@@ -74,6 +74,7 @@ format: byte-oriented   !f op ;
 format: bit-oriented   !f !bit ;
 format: literal-oriented   !literal ;
 format: jump   2/ addr ;
+format: movlb   opcode +! ;
 
 \ Define registers
 
@@ -88,7 +89,7 @@ previous also assembler definitions
 \ 000A*brw
 \ 0010*moviw
 \ 0018*movwi
-\ 0020*movlb
+0020 movlb movlb,
 \ 0062 option
 0063 0op sleep,
 0064 0op clrwdt,
