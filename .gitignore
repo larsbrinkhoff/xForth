@@ -6,3 +6,5 @@
 /image.*
 /*-stamp
 /.gdbinit
+/params
+/target/c/params.fth
