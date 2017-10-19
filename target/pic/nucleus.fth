@@ -33,27 +33,20 @@ code dup
    return,
 end-code
 
-code drop
-   w s movf,
-   fsr movwf,
-   w indf movf,
-   t movwf,
-
-   f fsr incf,
-   w indf movf,
-   t 1+ movwf,
-   
-   2 movlw,
-   f s addwf,
-
-   return,
-end-code
-
 code nip
    2 movlw,
    f s addwf,
    return,
 end-code
+
+code invert
+   f t comf,
+   f t 1+ comf,
+   return,
+end-code
+
+: negate   invert [  \ Fall through.
+: 1+   1 [  \ Fall through.
 
 code +
    w s movf,
@@ -112,12 +105,6 @@ code 2/
    return,
 end-code
 
-code invert
-   f t comf,
-   f t 1+ comf,
-   return,
-end-code
-
 code @
    w t movf,
    fsr movwf,
@@ -133,45 +120,6 @@ code c@
    ] @ [ also assembler
    t 1+ clrf,
    return,
-end-code
-
-code !
-   w s movf,
-   fsr movwf,
-   w indf movf,
-   x movwf,
-   f fsr incf,
-   w indf movf,
-   x 1+ movwf,
-
-   w t movf,
-   fsr movwf,
-   w x movf,
-   indf movwf,
-
-   f fsr incf,
-   w x 1+ movf,
-   indf movwf,
-
-   2 movlw,
-   f s addwf,
-   ' drop goto,
-end-code
-
-code c!
-   w s movf,
-   fsr movwf,
-   w indf movf,
-   x movwf,
-
-   w t movf,
-   fsr movwf,
-   w x movf,
-   indf movwf,
-
-   2 movlw,
-   f s addwf,
-   ' drop goto,
 end-code
 
 code swap
@@ -195,6 +143,63 @@ code swap
    indf movwf,
 
    return,
+end-code
+
+: r>   rp @ dup @ swap 2 + rp [  \ Fall through.
+
+code !
+   w s movf,
+   fsr movwf,
+   w indf movf,
+   x movwf,
+   f fsr incf,
+   w indf movf,
+   x 1+ movwf,
+
+   w t movf,
+   fsr movwf,
+   w x movf,
+   indf movwf,
+
+   f fsr incf,
+   w x 1+ movf,
+   indf movwf,
+
+   2 movlw,
+   f s addwf,
+   \ Fall through.
+end-code
+
+code drop
+   w s movf,
+   fsr movwf,
+   w indf movf,
+   t movwf,
+
+   f fsr incf,
+   w indf movf,
+   t 1+ movwf,
+   
+   2 movlw,
+   f s addwf,
+
+   return,
+end-code
+
+code c!
+   w s movf,
+   fsr movwf,
+   w indf movf,
+   x movwf,
+
+   w t movf,
+   fsr movwf,
+   w x movf,
+   indf movwf,
+
+   2 movlw,
+   f s addwf,
+   ' drop goto,
 end-code
 
 code over
@@ -231,22 +236,18 @@ code 0<
    return,
 end-code
 
-: 1+   1 + ;
 : ?dup   dup if dup then ;
-: negate   invert 1+ ;
+: 1-   1 [  \ Fall through.
 : -   negate + ;
 : >r   rp @ 2 - dup rp ! ! ;
-: r>   rp @ dup @ swap 2 + rp ! ;
 : r@   rp @ @ ;
 : +!   dup >r @ + r> ! ;
+: =   - [  \ Fall through.
 : 0=   if 0 else -1 then ;
 : 0<>   0= 0= ;
-: =   - 0= ;
-\ Expand calls inline to reduce return stack usage.
 : <>   invert 1+ + if -1 else 0 then ;
 
 : cell+   2 + ;
-: 1-   1 - ;
 
 code bye
    60 movwf,

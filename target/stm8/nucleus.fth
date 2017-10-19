@@ -56,6 +56,17 @@ code over
    pushy jra,
 end-code
 
+code invert
+   x ldy,
+   (y) ldy,
+   y cplw,
+   (x) sty,
+   ret,
+end-code
+
+: negate   invert [  \ Fall through.
+: 1+   1 [  \ Fall through.
+
 code +
    1 ,x) lda,
    3 ,x) add,
@@ -110,14 +121,6 @@ code 2/
    ret,
 end-code
 
-code invert
-   x ldy,
-   (y) ldy,
-   y cplw,
-   (x) sty,
-   ret,
-end-code
-
 code @
    x ldy,
    (y) ldy,
@@ -135,10 +138,7 @@ code c@
    ret,
 end-code
 
-code 2drop
-   1C c, 00 c, 04 c, \ 4 # addx,
-   ret,
-end-code
+: +!   dup >r @ + r> [  \ Fall through.
 
 code !
    x ldy,
@@ -147,7 +147,11 @@ code !
    2 ,x) ldx,
    (y) stx,
    x popw,
-   ' 2drop jra,
+end-code
+
+code 2drop
+   1C c, 00 c, 04 c, \ 4 # addx,
+   ret,
 end-code
 
 code c!
@@ -200,15 +204,12 @@ code 0<
 end-code
 
 : ?dup   dup if dup then ;
-: +!   dup >r @ + r> ! ;
-: 1+   1 + ;
-: negate   invert 1+ ;
+: 1-   1 [  \ Fall through.
 : -   negate + ;
+: =   - [  \ Fall through.
 : 0=   -1 swap if 1+ then ;
+: <>   - [  \ Fall through.
 : 0<>   0= 0= ;
-: =   - 0= ;
-: <>   - 0<> ;
-: 1-   1 - ;
 : cell+   1+ 1+ ;
 
 code bye

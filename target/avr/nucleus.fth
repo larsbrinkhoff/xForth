@@ -13,6 +13,15 @@ code cold
    ahead, \ Jump to WARM.
 end-code
 
+code invert
+   r26 com,
+   r27 com,
+   ret,
+end-code
+
+: negate   invert 1+ ;
+: -   negate [  \ Fall through.
+
 code +
    y+ r2 ld,
    r2 r26 add,
@@ -57,12 +66,6 @@ code 2/
    ret,
 end-code
 
-code invert
-   r26 com,
-   r27 com,
-   ret,
-end-code
-
 code @
    r26 r30 movw,
    z+ r26 ld,
@@ -76,11 +79,42 @@ code c@
    ret,
 end-code
 
+code dup
+   -y r27 st,
+   -y r26 st,
+   ret,
+end-code
+
+code branch?
+   r26 r27 or,
+   \ Fall through.
+end-code
+
 code drop
    y+ r26 ld,
    y+ r27 ld,
    ret,
 end-code
+
+code >r
+   r31 pop,
+   r30 pop,
+   r26 push,
+   r27 push,
+   ] drop [ also assembler
+   ijmp,
+end-code
+
+code r>
+   r31 pop,
+   r30 pop,
+   ] dup [ also assembler
+   r27 pop,
+   r26 pop,
+   ijmp,
+end-code
+
+: +!   dup >r @ + r> [  \ Fall through.
 
 code !
    r26 r30 movw,
@@ -96,12 +130,6 @@ code c!
    ] drop [ also assembler
    r27 clr,
    store rjmp,
-end-code
-
-code dup
-   -y r27 st,
-   -y r26 st,
-   ret,
 end-code
 
 code ?dup
@@ -127,29 +155,6 @@ code over
    ret,
 end-code
 
-code >r
-   r31 pop,
-   r30 pop,
-   r26 push,
-   r27 push,
-   ] drop [ also assembler
-   ijmp,
-end-code
-
-code r>
-   r31 pop,
-   r30 pop,
-   ] dup [ also assembler
-   r27 pop,
-   r26 pop,
-   ijmp,
-end-code
-
-code branch?
-   r26 r27 or,
-   ' drop rjmp,
-end-code
-
 code 0<
    0 # r26 adiw,
    0<, if,
@@ -163,14 +168,11 @@ code 0<
   then,
 end-code
 
-: +!   dup >r @ + r> ! ;
 : r@   r> r> dup >r swap >r ;
-: negate   invert 1+ ;
-: -   negate + ;
+: =   - [  \ Fall through.
 : 0=   if 0 else -1 then ;
+: <>   - [  \ Fall through.
 : 0<>   0= 0= ;
-: =   - 0= ;
-: <>   - 0<> ;
 
 code bye
    break,

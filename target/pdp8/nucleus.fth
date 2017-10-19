@@ -130,17 +130,19 @@ code r@
    exit,
 end-code
    
+code @
+   temp1 dca,
+   temp1 ) tad,
+   exit,
+end-code
+
+: +!   dup >r @ + r> [  \ Fall through.
+
 code !
    temp1 dca,
    sp ) tad,
    temp1 ) dca,
    sp ) tad,
-   exit,
-end-code
-
-code @
-   temp1 dca,
-   temp1 ) tad,
    exit,
 end-code
 
@@ -201,10 +203,9 @@ code 0<
    exit,
 end-code
 
-: +!   dup >r @ + r> ! ;
+: 1-   1 [  \ Fall through.
 : -   negate + ;
+: =   - [  \ Fall through.
 : 0=   if 0 else -1 then ;
-: 1-   1 - ;
+: <>   - [  \ Fall through.
 : 0<>   0= 0= ;
-: =   - 0= ;
-: <>   - 0<> ;
