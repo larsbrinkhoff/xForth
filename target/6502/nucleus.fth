@@ -67,18 +67,6 @@ code over
    pushay jmp,
 end-code
 
-code +
-   stack-lo ,x lda,
-   clc,
-   stack-lo 1+ ,x adc,
-   stack-lo 1+ ,x sta,
-   stack-hi ,x lda,
-   stack-hi 1+ ,x adc,
-   inx,
-   stack-hi ,x sta,
-   rts,
-end-code
-
 code xor
    stack-hi ,x lda,
    stack-hi 1+ ,x eor,
@@ -154,6 +142,33 @@ code c@
    storay jmp,
 end-code
 
+: negate   invert [  \ Fall through.
+
+code 1+
+   stack-lo ,x inc,
+   0=, if,
+     stack-hi ,x inc,
+   then,
+   rts,
+end-code
+
+: 1-   1 [  \ Fall through.
+: -   negate [  \ Fall through.
+
+code +
+   stack-lo ,x lda,
+   clc,
+   stack-lo 1+ ,x adc,
+   stack-lo 1+ ,x sta,
+   stack-hi ,x lda,
+   stack-hi 1+ ,x adc,
+   inx,
+   stack-hi ,x sta,
+   rts,
+end-code
+
+: +!   dup >r @ + r> [  \ Fall through.
+
 code !
    ' fetchw jsr,
    stack-lo 1+ ,x lda,
@@ -185,10 +200,7 @@ code swap
    rts,
 end-code
 
-code nip
-   inx,
-   rts,
-end-code
+: nip   swap drop ;
 
 code branch?
    inx,
@@ -198,18 +210,8 @@ code branch?
 end-code
 
 : ?dup   dup if dup then ;
-: +!   dup >r @ + r> ! ;
 
-code 1+
-   stack-lo ,x inc,
-   0=, if,
-     stack-hi ,x inc,
-   then,
-   rts,
-end-code
-
-: negate   invert 1+ ;
-: -   negate + ;
+: =   - [  \ Fall through.
 
 code 0=
    0 # ldy,
@@ -233,11 +235,8 @@ code 0<
    pushyy jmp,
 end-code
 
+: <>   - [  \ Fall through.
 : 0<>   0= 0= ;
-: =   - 0= ;
-: <>   - 0<> ;
-
-: 1-   1 - ;
 : cell+   1+ 1+ ;
 
 code bye

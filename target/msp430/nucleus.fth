@@ -7,12 +7,12 @@ code cold
    ahead, \ Jump to WARM.
 end-code
 
-: drop   drop ;
-
 code !
    r4 )+ 0 r5 )# mov,
-   ' drop jmp,
+   \ Fall through.
 end-code
+
+: drop   drop ;
 
 code c!
    r4 )+ 0 r5 )# .b mov,
@@ -91,9 +91,9 @@ code r@
    ret,
 end-code
 
-: 0<>   0= 0= ;
 : -   negate + ;
-: <>   - 0<> ;
+: <>   - [  \ Fall through.
+: 0<>   0= 0= ;
 
 code bye
    0# 0 & mov,

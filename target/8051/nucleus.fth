@@ -78,6 +78,16 @@ code over
    semiswap sjmp,
 end-code
 
+code invert
+   FF # dpl xrlm,
+   FF # dph xrlm,
+   ret,
+end-code
+
+: negate   invert 1+ ;
+: 1-   1 [  \ Fall through.
+: -   negate [  \ Fall through.
+
 code +
    @r0 xlda,
    r0 inc,
@@ -142,12 +152,6 @@ code 2/
    ret,
 end-code
 
-code invert
-   FF # dpl xrlm,
-   FF # dph xrlm,
-   ret,
-end-code
-
 code @
    @dptr xlda,
    r2 sta,
@@ -187,6 +191,18 @@ code drop
    ret,
 end-code
 
+code >r
+   3 pop,
+   2 pop,
+   dpl push,
+   dph push,
+   2 push,
+   3 push,
+   ' drop sjmp,
+end-code
+
+: +!   dup >r @ + r> [  \ Fall through.
+
 code !
    @r0 xlda,
    r0 inc,
@@ -195,16 +211,6 @@ code !
    @r0 xlda,
    r0 inc,
    @dptr xsta,
-   ' drop sjmp,
-end-code
-
-code >r
-   3 pop,
-   2 pop,
-   dpl push,
-   dph push,
-   2 push,
-   3 push,
    ' drop sjmp,
 end-code
 
@@ -247,14 +253,10 @@ code 0<
 end-code
 
 : ?dup   dup if dup then ;
-: +!   dup >r @ + r> ! ;
-: negate   invert 1+ ;
-: -   negate + ;
+: =   - [  \ Fall through.
 : 0=   if 0 else -1 then ;
+: <>   - [  \ Fall through.
 : 0<>   0= 0= ;
-: =   - 0= ;
-: <>   - 0<> ;
-: 1-   1 - ;
 
 code bye
    1B ljmp,
