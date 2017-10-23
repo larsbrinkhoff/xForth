@@ -1,9 +1,9 @@
 hex
-0F000 org
+0F800 org
 
 code cold
-   0400 # sp mov, \ Set return stack pointer.
-   0300 # r4 mov, \ Set data stack pointer.
+   0280 # sp mov, \ Set return stack pointer.
+   0270 # r4 mov, \ Set data stack pointer.
    ahead, \ Jump to WARM.
 end-code
 

@@ -32,7 +32,7 @@ hex
    FFE0 here - allot
    0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ,
    0 , 0 , 0 , 0 , 0 , 0 , 0 ,
-   0F000 , ;
+   0F800 , ;
 decimal
 
 : end-target   vectors, ;

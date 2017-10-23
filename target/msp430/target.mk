@@ -1,4 +1,4 @@
-START = 0xF000
+START = 0xF800
 OPTS = -msp430 -break_io 0x0000 -set_pc $(START) -bin -address $(START)
 
 test-image: image
