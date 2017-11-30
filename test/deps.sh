@@ -2,6 +2,7 @@ set -ex
 
 install_lbforth() {
     test -f $HOME/bin/forth && return
+    test -f lbForth/Makefile || git submodule update --init --recursive
     cd lbForth
     export M32=-m32
     sh -e test/install-deps.sh install_${TRAVIS_OS_NAME:-linux}
