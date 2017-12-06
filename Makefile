@@ -13,9 +13,8 @@ $(STAMP): $(wildcard conf.mk)
 
 check: test-$(TARGET)-asm test-image
 
-image: src/compiler.fth test/test-kernel.fth $(T)
-	cp test/test-kernel.fth app.fth
-	echo include $< | forth
+image: test/test-kernel.fth src/compile src/compiler.fth $(T)
+	./src/compile $< image
 
 image.hex: image
 	objcopy -I binary -O ihex --change-section-address .data=$(START) $< $@

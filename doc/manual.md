@@ -2,7 +2,7 @@
 
 [Build instructions.](building.md)
 
-Invoking the compiler.
+[Invoking the compiler.](invoke.md)
 
 [Programming an image onto a device.](programming.md)
 
