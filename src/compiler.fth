@@ -47,7 +47,9 @@ t-cell t-constant cell
 
 target
 
-include src/kernel.fth
+include target/nucleus.fth
+
+include app.fth
 
 end-target
 

@@ -6,3 +6,4 @@
 /image.*
 /*-stamp
 /.gdbinit
+/app.fth

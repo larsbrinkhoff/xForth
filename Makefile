@@ -13,7 +13,8 @@ $(STAMP): $(wildcard conf.mk)
 
 check: test-$(TARGET)-asm test-image
 
-image: src/compiler.fth src/kernel.fth $(T)
+image: src/compiler.fth test/test-kernel.fth $(T)
+	cp test/test-kernel.fth app.fth
 	echo include $< | forth
 
 image.hex: image
