@@ -1,5 +1,3 @@
-include target/nucleus.fth
-
 hex
 
 : assert=   <> if panic then ;
