@@ -15,7 +15,8 @@ simulavr, gpsim, simh, and thumbulator.  The status of the tests is:
 The compiler is suitable for parts with 1K program memory and 64 bytes
 RAM.  The kernel code occupies 100-500 bytes, and it's recommended to
 reserve about 24 bytes for the stacks.  At this size, only a bare
-minimum of Forth words are supported.
+minimum of Forth words are supported.  All targets come with a prefix
+assembler with its own unique syntax.
 
 There is no resident interpreter or compiler in the target.  Things
 are set up to provide target interaction through tethered operation,
