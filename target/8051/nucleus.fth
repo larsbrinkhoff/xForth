@@ -1,5 +1,4 @@
 hex
-0 org
 
 also assembler
    \ Interrupt vectors.

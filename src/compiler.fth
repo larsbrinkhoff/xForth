@@ -47,8 +47,8 @@ t-cell t-constant cell
 
 target
 
+program-start org
 include target/nucleus.fth
-
 include app.fth
 
 end-target

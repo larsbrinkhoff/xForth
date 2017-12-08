@@ -1,5 +1,4 @@
 hex
-0F800 org
 
 code cold
    0280 # sp mov, \ Set return stack pointer.

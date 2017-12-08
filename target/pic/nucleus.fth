@@ -1,5 +1,4 @@
 hex
-0 org
 
 code cold
    5 status bsf,

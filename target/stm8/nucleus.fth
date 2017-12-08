@@ -1,5 +1,4 @@
 hex
-08000 org
 
 code cold
    \ Interrupt vectors.
