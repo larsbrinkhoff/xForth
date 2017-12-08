@@ -14,8 +14,6 @@
 
 only forth
 
-hex 0200 ram-dp ! decimal
-
 also meta definitions also assembler
 
 : comp,   # call, ;

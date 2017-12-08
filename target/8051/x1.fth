@@ -12,8 +12,6 @@
 
 only forth
 
-256 ram-dp !
-
 also meta definitions also assembler
 
 : pc-   here - 2 - ;

@@ -13,8 +13,6 @@
 
 only forth
 
-96 ram-dp !
-
 also meta definitions also assembler
 
 : short?   dup here - 4096 < ;

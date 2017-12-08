@@ -11,7 +11,6 @@ only forth
 34 constant t
 36 constant x
 38 constant rp
-40 ram-dp !
 
 also meta definitions also assembler
 

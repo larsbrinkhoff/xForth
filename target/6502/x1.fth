@@ -20,8 +20,6 @@ only forth
 64 constant tos
 66 constant w
 
-0 ram-dp !
-
 also meta definitions also assembler
 
 : comp,   jsr, ;

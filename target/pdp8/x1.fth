@@ -14,7 +14,6 @@ octal
 10 constant sp
 11 constant rp
 
-4000 ram-dp !
 1 constant t-cell
 
 also meta definitions also assembler
