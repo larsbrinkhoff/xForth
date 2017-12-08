@@ -5,14 +5,15 @@
 
 : h: : ;
 
-variable ram-dp
-: ram-here   ram-dp @ ;
-: ram-allot   ram-dp +! ;
-
 0 value latest
 
 include target/params.fth
 include lib/meta.fth
+
+variable ram-dp
+data-start ram-dp !
+: ram-here   ram-dp @ ;
+: ram-allot   ram-dp +! ;
 
 only forth also meta definitions
 

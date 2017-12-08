@@ -12,7 +12,7 @@
 
 only forth
 
-hex 020000000 ram-dp !
+hex
 
 also meta definitions also assembler
 
