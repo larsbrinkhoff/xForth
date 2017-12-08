@@ -1,5 +1,4 @@
 octal
-0 org
 
 code cold
    cla,

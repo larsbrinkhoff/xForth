@@ -1,5 +1,4 @@
 hex
-01000 org
 
 code cold
    FF # ldx,

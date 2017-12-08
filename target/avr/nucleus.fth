@@ -1,5 +1,3 @@
-0 org
-
 code cold
    ahead, \ Interrupt vectors.
    nop, nop, nop, nop, nop, nop, nop, nop,
