@@ -53,6 +53,8 @@ install_thumbulator() {
     sudo make install
 }
 
+sudo apt-get update -ym
+
 (install_lbforth)
 
 case $TARGET in
