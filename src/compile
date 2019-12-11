@@ -7,12 +7,12 @@ if test "$#" != 2; then
     exit 1
 fi
 
-input="$1"
-output="$2"
+input="$PWD/$1"
+output="$PWD/$2"
 
 cd `dirname $0`/..
 cp "$input" app.fth
 echo include src/compiler.fth | forth
-if test "$output" != image; then
+if test \! "$output" -ef image; then
     mv image "$output"
 fi 
