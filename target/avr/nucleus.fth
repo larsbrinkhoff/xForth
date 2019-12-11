@@ -117,7 +117,6 @@ end-code
 code !
    r26 r30 movw,
    ] drop [ also assembler
-label store
    z+ r26 st,
    z r27 st,
    ' drop rjmp,
@@ -126,8 +125,8 @@ end-code
 code c!
    r26 r30 movw,
    ] drop [ also assembler
-   r27 clr,
-   store rjmp,
+   z r26 st,
+   ' drop rjmp,
 end-code
 
 code ?dup
