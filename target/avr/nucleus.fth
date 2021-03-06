@@ -1,13 +1,29 @@
-code cold
-   ahead, \ Interrupt vectors.
+code iv,
+   ahead, nop, \ Interrupt vectors. atmeba328p each IV = 2 instructions, 26 interrupt vectors => 52 cells (ahead, + nop, = reset; + 25IV)
    nop, nop, nop, nop, nop, nop, nop, nop,
    nop, nop, nop, nop, nop, nop, nop, nop,
-   then,
+   nop, nop, nop, nop, nop, nop, nop, nop,
+   nop, nop,
+   nop, nop, nop, nop, nop, nop, nop, nop,
+   nop, nop, nop, nop, nop, nop, nop, nop,
+   nop, nop, nop, nop, nop, nop, nop, nop,
+end-code
 
-   140 # r28 ldi, \ Set data stack pointer.
+code cold,
+   then,
+(   140 # r28 ldi, \ Set data stack pointer. Problem s pretekanim!!!! zmenit pocatky OBOUT stacků
    r29 clr,
    158 # r16 ldi,
-   61 r16 out, \ Set return stack pointer.
+   61 r16 out, \ Set return stack pointer. )
+
+   255 # r28 ldi, \ Set data stack pointer to 3/4 of ram
+   6 # r29 ldi,
+
+   255 # r16 ldi,  \ Set return stack pointer to ram end
+   61 r16 out,
+   8 # r16 ldi,
+   62 r16 out,
+
    ahead, \ Jump to WARM.
 end-code
 
@@ -164,6 +180,33 @@ code 0<
      ret,
   then,
 end-code
+
+code swr
+   -y r27 st,
+   63 r27 in,
+   -y r27 st,
+   -y r26 st,
+   -y r3 st,
+   -y r2 st,
+   -y r31 st,
+   -y r30 st,
+   ret,
+end-code
+
+code rwr
+   y+ r30 ld,
+   y+ r31 ld,
+   y+ r2 ld,
+   y+ r3 ld,
+   y+ r26 ld,
+   y+ r27 ld,
+   63 r27 out,
+   y+ r27 ld,
+   ret,
+end-code
+
+
+
 
 : r@   r> r> dup >r swap >r ;
 : =   - [  \ Fall through.

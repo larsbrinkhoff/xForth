@@ -1,5 +1,6 @@
 also assembler
 h: exit   ret, ;
+h: exitint  reti, ;
 h: nip   2 # r28 adiw, ;
 h: cell+   2 # r26 adiw, ;
 h: 1+   1 # r26 adiw, ;
