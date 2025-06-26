@@ -6,5 +6,5 @@ test-image: image.hex
 	grep "8b             break" $@
 
 upload: image.hex
-	sudo stm8flash -c stlinkv2 -p stm8s103f3 -w $<
+	sudo stm8flash -c stlinkv2 -p stm8s207rb -w $<
 

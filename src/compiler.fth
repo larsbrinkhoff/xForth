@@ -32,6 +32,7 @@ host also meta definitions
 h: :   parse-name header, prologue, ] ;
 h: constant   t-constant ;
 h: variable   ram-here t-constant  t-cell ram-allot ;
+h: create   ram-here t-constant ;
 
 h: code   parse-name header,  also assembler ;
 h: end-code   previous ;
