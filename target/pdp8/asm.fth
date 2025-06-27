@@ -3,7 +3,7 @@
 \ Assembler for PDP-8.
 
 \ Adds to FORTH vocabulary: ASSEMBLER CODE ;CODE.
-\ Creates ASSEMBLER vocabulary with: END-CODE and PIC opcodes.
+\ Creates ASSEMBLER vocabulary with: END-CODE and PDP-8 opcodes.
 
 \ This will become a cross assembler if loaded with a cross-compiling
 \ vocabulary at the top of the search order.
