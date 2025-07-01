@@ -18,7 +18,8 @@ variable var2
 : memory   42 var1 !  var1 c@  var1 1+ c@  2dup ?and ?or
            0 var2 !  1 var2 c!  2 var2 1+ c!  var2 @
 	   dup 0102 = over 0201 = or swap 0001 = or -1 assert= ;
-: ram   var2 var1 - cell assert=  const 42 assert= ;
+: abs   dup 0< if negate then ;
+: ram   var2 var1 - abs cell assert=  const 42 assert= ;
 : test   juggling arithmetic negative return ram memory ;
 
 \ Jump here from COLD.
