@@ -33,7 +33,9 @@ also forth
 
 host also meta definitions
 
-h: :   parse-name header, prologue, ] ;
+: o.   base @ swap octal . base ! ;
+: peek  2dup type space here cell/ o. cr ;
+h: :   source type cr parse-name peek header, prologue, ] ;
 h: constant   t-constant ;
 h: create   ram-here cell/ t-constant ;
 h: variable   ram-here cell/ t-constant  cell ram-allot ;
@@ -59,6 +61,12 @@ target
 program-start org
 include target/nucleus.fth
 include app.fth
+
+octal
+.( Code: ) here cell/ . cr
+.( Latest: ) latest cell/ . cr
+.( Literals: ) lit@ . cr
+.( Data: ) ram-here cell/ . cr
 
 end-target
 
