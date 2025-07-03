@@ -4,6 +4,8 @@
 /test-*
 /image
 /image.*
+/kernel
+/kernel.*
 /*-stamp
 /.gdbinit
 /app.fth

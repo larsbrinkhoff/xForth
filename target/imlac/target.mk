@@ -12,3 +12,9 @@ test-image: image.simh
 	imlac $< > $@
 	! grep "HALT instruction, PC: 00110" $@
 	grep "HALT instruction, PC: 00106" $@
+
+kernel.simh: kernel
+	$(TDIR)/convert.sh < $< > $@
+	echo "set crt disabled" >> $@
+	echo "attach -u tty 12345" >> $@
+	echo "dep pc 100" >> $@
