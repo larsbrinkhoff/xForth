@@ -4,6 +4,7 @@
 
 
 : h: : ;
+: h' ' ;
 
 0 value latest
 
@@ -43,6 +44,8 @@ h: ;   [compile] exit [compile] [ ;
 h: [']   ' t-literal ;
 h: [char]   char t-literal ;
 h: literal   t-literal ;
+h: [compile]   h' comp, ;
+h: ."   [char] " parse 2drop ;
 
 t-cell t-constant cell
 
