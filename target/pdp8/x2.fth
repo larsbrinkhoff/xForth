@@ -10,14 +10,14 @@ h: 2*   cll, ral, +, ;
 h: negate   cma, iac, +, ;
 h: cells ;
 
-h: if   branch?, if, ;
+h: if   0branch, ahead, ;
 h: ahead   ahead, ;
 h: then   then, ;
 h: else   else, ;
 
 h: begin   begin, ;
 h: again   again, ;
-h: until   branch?, until, ;
-h: while   branch?, while, ;
+h: until   0branch, again, ;
+h: while   0branch, ahead, ;
 h: repeat   repeat, ;
 previous
