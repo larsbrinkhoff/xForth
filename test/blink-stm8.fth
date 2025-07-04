@@ -1,5 +1,3 @@
-include target/nucleus.fth
-
 5005 constant pb_odr
 5007 constant pb_ddr
 5008 constant pb_cr1
