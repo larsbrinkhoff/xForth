@@ -22,6 +22,7 @@ include target/asm.fth
 : header, ( a u -- ) here t-word  here to latest ;
 
 include target/x1.fth
+include target/avr/interrupt.fth
 
 also forth
 ' comp, is t-compile,
@@ -39,6 +40,7 @@ h: end-code   previous ;
 only forth also meta also compiler definitions previous
 include target/x2.fth
 
+h: int;   [compile] exitint [compile] [ ;
 h: ;   [compile] exit [compile] [ ;
 h: [']   ' t-literal ;
 h: [char]   char t-literal ;
