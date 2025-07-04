@@ -156,12 +156,6 @@ code 0branch
    exit,
 end-code
 
-code 0
-   ' push jms,
-   \ AC is already cleared.
-   exit,
-end-code
-
 code 1
    ' push jms,
    cla, iac, +,
