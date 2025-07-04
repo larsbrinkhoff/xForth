@@ -26,7 +26,7 @@ also meta definitions also assembler
 
 : exit,   latest cell/ ) jmp, ;
 
-: branch?,   s" branch?" "' comp, l0<>, ;
+: 0branch,   s" 0branch" "' comp, ;
 : push,   s" push" "' comp, ;
 
 : t-num   push,  # tad, ;

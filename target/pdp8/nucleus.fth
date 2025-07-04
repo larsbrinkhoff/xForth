@@ -148,10 +148,9 @@ end-code
 : c! ! ;
 : c@ @ ;
 
-code branch?
-   cll,
+code 0branch
    sza,
-    cml,
+    ' 0branch isz,
    cla,
    sp ) tad,
    exit,
