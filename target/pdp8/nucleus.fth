@@ -195,9 +195,14 @@ code 0<
    exit,
 end-code
 
-: 1-   1 [  \ Fall through.
+code 0<>
+    sza,
+     cla, cma, +,
+    exit,
+end-code
+
 : -   negate + ;
-: =   - [  \ Fall through.
-: 0=   if 0 else -1 then ;
-: <>   - [  \ Fall through.
-: 0<>   0= 0= ;
+: 1-   1 - ;
+: 0=   0<> invert ;
+: <>   - 0<> ;
+: =   <> invert ;
