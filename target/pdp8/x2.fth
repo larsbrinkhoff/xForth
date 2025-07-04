@@ -9,6 +9,7 @@ h: cell+   iac, ;
 h: 2*   cll, ral, +, ;
 h: negate   cma, iac, +, ;
 h: cells ;
+h: 0   push, ;
 
 h: if   0branch, ahead, ;
 h: ahead   ahead, ;
