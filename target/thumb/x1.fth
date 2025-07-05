@@ -19,8 +19,10 @@ also meta definitions also assembler
 : prologue,   {lr} push, ;
 : comp,   bl, ;
 
+definitions
 : branch?,   s" branch?" "' bl, 0<>, ;
 : dup,   4 # r7 subi,  r7 ) r6 str, ;
+previous definitions also assembler
 
 : small?   dup 100 u< ;
 : small   # r6 movi, ;
