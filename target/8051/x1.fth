@@ -18,8 +18,10 @@ also meta definitions also assembler
 : short?   dup pc- -128 128 within ;
 : comp,   short? if acall, else lcall, then ;
 
+definitions
 : branch?,   s" branch?" "' comp, 0<>, ;
 : dup,   s" dup" "' comp, ;
+previous definitions also assembler
 
 : t-num   dup,  # dptr mov, ;
 
