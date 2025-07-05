@@ -18,8 +18,10 @@ also meta definitions also assembler
 : short?   dup here - 4096 < ;
 : comp,   short? if rcall, else call, then ;
 
+definitions
 : branch?,   s" branch?" "' rcall, 0<>, ;
 : dup,   s" dup" "' rcall, ;
+previous definitions also assembler
 
 : t-num   dup,  dup 255 and # r26 ldi,  8 rshift # r27 ldi, ;
 

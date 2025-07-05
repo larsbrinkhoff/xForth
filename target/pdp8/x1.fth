@@ -24,10 +24,11 @@ also meta definitions also assembler
 : near?   dup >page dup 0=  swap here cell/ >page = or ;
 : comp,   cell/ near? if jms, else #i jms, then ;
 
+definitions
 : exit,   latest cell/ ) jmp, ;
-
 : 0branch,   s" 0branch" "' comp, ;
 : push,   s" push" "' comp, ;
+previous definitions also assembler
 
 : t-num   push,  # tad, ;
 

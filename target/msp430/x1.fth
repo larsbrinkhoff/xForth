@@ -18,8 +18,10 @@ also meta definitions also assembler
 
 : comp,   # call, ;
 
+definitions
 : branch?,   r5 tst,  r4 )+ r5 mov,  0<>, ;
 : dup,   s" dup" "' # call, ;
+previous definitions also assembler
 
 : t-num   dup,  # r5 mov, ;
 

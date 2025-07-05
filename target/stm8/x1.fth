@@ -16,8 +16,10 @@ also meta definitions also assembler
 : short?   dup pc- -128 128 within ;
 : comp,   short? if callr, else call, then ;
 
+definitions
 : branch?,   s" branch?" "' comp, 0<>, ;
 : dup,   s" dup" "' comp, ;
+previous definitions also assembler
 
 : !#   # lda,  (x) sta, ;
 : !0   (x) clr, ;
