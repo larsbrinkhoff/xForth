@@ -43,7 +43,7 @@ variable opcode
 
 \ Literal pool.
 variable lit
-: 0lit   2000 lit ! ;
+: 0lit   4000 lit ! ;
 0lit
 : lit+   -1 lit +! ;
 : lit@   lit @ ;
@@ -60,10 +60,10 @@ previous definitions
 : +,   cell negate allot  here @  here cell - @ or  here cell - ! ;
 
 \ Store a literal and return its address.
-: >l   here cell/ -2000 and + cells ;
+: >l   here cell/ -4000 and + cells ;
 : 'lit   lit@ >l ;
 : +lit   lit+ 'lit ! 'lit cell/ ;
-: more?   dup 2000 < ;
+: more?   dup 4000 < ;
 : different?   2dup >l @ <> ;
 : >lit ( x -- a )
    lit@ begin more? while different? while 1+ repeat
@@ -188,7 +188,7 @@ previous also assembler definitions
 \ Addressing mode syntax.
 : )   ['] indirect -addr ;
 : #i   >lit ) ;
-: #   >lit ;
+: #     >lit ;
 : +#   0 +lit ) ;
 
 \ Resolve jumps.
