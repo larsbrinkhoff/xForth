@@ -166,9 +166,24 @@ end-code
 : rp0   6400 11 ! ;
 
 code execute
+   ' execute xam,
+   rp xam,
+   temp1 dac,
+   rp lac,
+   temp1 ) dac,
+   sta,
+   temp1 add,
+   rp dac,
+   ' execute lac,
+
    temp1 dac,
    sp ) lac,
    temp1 ) jms,
+
+   ' execute dac,
+   rp ) lac,
+   ' execute xam,
+
    exit,
 end-code
 
