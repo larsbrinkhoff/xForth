@@ -14,9 +14,9 @@ h: 1-   -1 # add, ;
 h: 2/   1 sar, ;
 h: cells ;
 
-h: >r   latest cell/ xam,   s" (>r)" "' comp, ;
-h: r>   s" (r>)" "' comp,  latest cell/ xam, ;
-h: r@   push,  latest cell/ lac, ;
+h: >r   latestxt cell/ xam,   s" (>r)" "' comp, ;
+h: r>   s" (r>)" "' comp,  latestxt cell/ xam, ;
+h: r@   push,  latestxt cell/ lac, ;
 
 h: if   0branch, ahead, ;
 h: ahead   ahead, ;

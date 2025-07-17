@@ -88,7 +88,6 @@ also forth definitions
 : instruction, ( a -- ) opcode! opcode, 0asm ;
 : mnemonic ( u a "name" -- ) create ['] noop 3,  does> instruction, ;
 : format:   create ] !csp  does> mnemonic ;
-: immediate:   ' latestxt >body ! ;
 
 \ Instruction formats.
 format: 0op ;

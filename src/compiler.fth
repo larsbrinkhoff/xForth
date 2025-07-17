@@ -7,6 +7,7 @@
 : h-c@+ ( a -- a' x ) dup 1+ swap c@ ;
 
 0 value latest
+0 value latestxt
 
 0 value 'code-dp0
 0 value 'data-dp0
@@ -25,8 +26,11 @@ only forth also meta definitions
 
 include target/asm.fth
 
-: header, ( a u -- ) here t-word  here to latest ;
 : ram,   ram-here !  cell ram-allot ;
+: link,   latest cell/ ram,  here t-word  here to latestxt  to latest ;
+: name,   dup ram,  begin dup while 1-  swap h-c@+ ram, swap repeat 2drop ;
+
+: header, ( a u -- ) 2dup ram-here -rot link,  latestxt cell/ ram,  name, ;
 
 include target/x1.fth
 
@@ -72,8 +76,9 @@ include app.fth
 
 octal
 .( Code: ) here cell/ . cr
-.( Latest: ) latest cell/ . cr
+.( Latestxt: ) latestxt cell/ . cr
 .( Literals: ) lit@ . cr
+.( Latest: ) latest cell/ . cr
 .( Data: ) ram-here cell/ . cr
 
 end-target

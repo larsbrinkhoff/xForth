@@ -24,7 +24,7 @@ also meta definitions also assembler
 : comp,   cell/ near? if jms, else #i jms, then ;
 
 definitions
-: exit,   latest cell/ ) jmp, ;
+: exit,   latestxt cell/ ) jmp, ;
 : 0branch,   s" 0branch" "' comp, ;
 : push,   s" push" "' comp, ;
 previous definitions also assembler
