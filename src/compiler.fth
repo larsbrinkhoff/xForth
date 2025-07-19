@@ -39,6 +39,10 @@ h: :   source type cr parse-name peek header, prologue, ] ;
 h: constant   t-constant ;
 h: create   ram-here cell/ t-constant ;
 h: variable   ram-here cell/ t-constant  cell ram-allot ;
+h: defer
+   parse-name header,  prologue,
+   here cell/ 2 + 134000 + t,  here cell/ 2 - 110000 + t,  s" abort" "' cell/ t, ;
+h: is   parse-name "' 3 cells + ! ;
 
 h: code   parse-name header,  also assembler ;
 h: end-code   previous ;
@@ -52,6 +56,7 @@ h: [char]   char t-literal ;
 h: literal   t-literal ;
 h: [compile]   ' cell * comp, ;
 h: compile   ' t-literal  s" compile," "' comp, ;
+h: is   ' t-literal s" (is)" "' comp, ;
 h: ."   s" (dot-quote)" "' comp,  [char] " parse string, ;
 
 t-cell t-constant cell
