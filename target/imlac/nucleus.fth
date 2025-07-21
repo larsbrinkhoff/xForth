@@ -4,9 +4,9 @@ octal
 
 code cold
    -1 cells allot
-   7000 # lac,
+   7700 # lac,
    sp dac,
-   6400 # lac,
+   7600 # lac,
    rp dac,
    +# jmp, >mark
 end-code
@@ -162,8 +162,8 @@ end-code
 
 : =   <> invert ;
 
-: sp0   [ 7000 1- ] literal 10 ! ;   \ Accounting for ! popping after setting sp.
-: rp0   6400 11 ! ;
+: sp0   [ 7700 1- ] literal 10 ! ;   \ Accounting for ! popping after setting sp.
+: rp0   7600 11 ! ;
 
 code execute
    ' execute xam,
