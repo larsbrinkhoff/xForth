@@ -8,6 +8,9 @@
 
 0 value latest
 
+0 value 'code-dp0
+0 value 'data-dp0
+
 include target/params.fth
 include lib/meta.fth
 

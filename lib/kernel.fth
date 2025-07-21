@@ -32,4 +32,9 @@ include lib/compiler.fth
 : warm
    then
    [ latest cell/ ] literal 'latest !
+   code-dp0 @ code-dp !
+   data-dp0 @ data-dp !
    banner abort [
+
+here cell/ 'code-dp0 !
+ram-here cell/ 'data-dp0 !
