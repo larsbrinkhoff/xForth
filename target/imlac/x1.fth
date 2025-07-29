@@ -38,5 +38,6 @@ previous definitions also assembler
 : '   ' cell/ ;
 : ,   ram, ;
 
+: immediate   latest cell + dup @ 100000 or swap ! ;
 : prologue, ;
 : end-target   page  ram-here here - allot ;
