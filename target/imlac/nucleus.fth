@@ -1,6 +1,6 @@
 octal
 
-100 cells here - allot
+77 cells here - allot
 
 code cold
    -1 cells allot
@@ -13,6 +13,7 @@ end-code
 
 code bye
    hlt,
+   100 jmp,
 end-code
 
 code panic

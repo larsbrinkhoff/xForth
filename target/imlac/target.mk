@@ -6,5 +6,5 @@ image.simh: image
 
 test-image: image.simh
 	imlac $< > $@
-	! grep "HALT instruction, PC: 00111" $@
-	grep "HALT instruction, PC: 00107" $@
+	! grep "HALT instruction, PC: 00110" $@
+	grep "HALT instruction, PC: 00106" $@
