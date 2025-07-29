@@ -1,7 +1,7 @@
 -include conf.mk
 
 T = target/params.fth target/asm.fth target/x1.fth target/x2.fth \
-    target/nucleus.fth
+    target/x3.fth target/nucleus.fth
 K = lib/kernel.fth lib/dict.fth lib/input.fth lib/number.fth \
     lib/interpreter.fth lib/compiler.fth lib/core.fth
 STAMP = $(TARGET)-stamp
