@@ -182,10 +182,10 @@ code emit
 end-code
 
 code key
+     ' 0 jms,
      begin,
      rsf,
       again,
-     rrb,
-     sp ) lac,
+     rrc,
      exit,
 end-code
