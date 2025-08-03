@@ -1,10 +1,5 @@
 octal
 
-\ The stack pointers use auto incrementation.
-10 cells here - allot
-0 ,
-0 ,
-
 100 cells here - allot
 
 code cold
