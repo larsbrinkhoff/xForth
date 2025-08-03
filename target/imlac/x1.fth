@@ -36,6 +36,7 @@ previous definitions also assembler
    # lac, ;
 
 : '   ' cell/ ;
+: ,   ram, ;
 
 : prologue, ;
-: end-target   page ;
+: end-target   page  ram-here here - allot ;
