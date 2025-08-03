@@ -3,7 +3,6 @@ h: exit   exit, ?page ;
 h: nip   sp isz, ;
 h: drop  sp ) lac, ;
 h: +   sp ) add, ;
-h: -   sp ) sub, ;
 h: or   sp ) ior, ;
 h: xor   sp ) xor, ;
 h: and   sp ) and, ;

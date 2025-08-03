@@ -87,6 +87,12 @@ code !
    exit,
 end-code
 
+code -
+   sp ) sub,
+   cia,
+   exit,
+end-code
+
 code +!
    temp1 dac,
    sp ) lac,
@@ -146,7 +152,13 @@ code 0<>
 end-code
 
 : 0=   0<> invert ;
-: <>   - 0<> ;
+
+code <>
+   sp ) sub,
+   ' 0<> jms,
+   exit,
+end-code
+
 : =   <> invert ;
 
 : sp0   7000 10 ! ;
