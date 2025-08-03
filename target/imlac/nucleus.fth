@@ -162,7 +162,7 @@ end-code
 
 : =   <> invert ;
 
-: sp0   7000 10 ! ;
+: sp0   [ 7000 1- ] literal 10 ! ;   \ Accounting for ! popping after setting sp.
 : rp0   6400 11 ! ;
 
 code execute
