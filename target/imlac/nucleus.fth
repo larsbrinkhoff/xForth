@@ -97,6 +97,7 @@ code +!
    temp1 dac,
    sp ) lac,
    temp1 ) add,
+   temp1 ) dac,
    sp ) lac,
    exit,
 end-code
