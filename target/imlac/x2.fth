@@ -10,6 +10,7 @@ h: invert   cma, ;
 h: negate   cia, ;
 h: 1+   iac, ;
 h: cell+   iac, ;
+h: 1-   -1 # add, ;
 h: 2/   1 sar, ;
 h: cells ;
 
