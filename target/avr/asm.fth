@@ -283,7 +283,7 @@ drop
 
 : 3swap   >r rot >r 2swap 2r> >r -rot r> ;
 : else,   ahead, 3swap then, ;
-: while,   >r if, r> ;
+: while,  swap >r if, r> ;
 : repeat,   again, then, ;
 
 \ Runtime for ;CODE.  CODE! is defined elsewhere.
